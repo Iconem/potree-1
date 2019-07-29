@@ -31,6 +31,7 @@ export class OrbitControls extends EventDispatcher{
 		this.sceneControls = new THREE.Scene();
 
 		this.rotationSpeed = 5;
+        this.panSpeed = 1.; 
 
 		this.fadeFactor = 10;
 		this.yawDelta = 0;
@@ -128,8 +129,10 @@ export class OrbitControls extends EventDispatcher{
 					y: (currMeanY - prevMeanY) / this.renderer.domElement.clientHeight
 				};
 
-				this.panDelta.x += delta.x;
-				this.panDelta.y += delta.y;
+				// this.panDelta.x += delta.x;
+				// this.panDelta.y += delta.y;
+				this.panDelta.x = delta.x * this.panSpeed;
+				this.panDelta.y = delta.y * this.panSpeed;
 
 				this.stopTweens();
 			}
@@ -144,6 +147,37 @@ export class OrbitControls extends EventDispatcher{
 		this.addEventListener('drop', drop);
 		this.addEventListener('mousewheel', scroll);
 		this.addEventListener('dblclick', dblclick);
+        
+        // controls_limits to clamp to to avoid weird relocation in toucscreen controls
+        // Slower pan
+		this.touchscreenMode = true;
+        if (this.touchscreenMode) {
+            this.rotationSpeed = 2;
+            this.panSpeed = 1. / 10.; 
+        }
+        // controls example for bamiyan cliff
+        this.controls_limits = {
+            cam_pos: {
+                min: new THREE.Vector3(391600, 3852400, -13), 
+                max: new THREE.Vector3(393200, 3857300, 1500)
+            }, 
+            pivot: {
+                min: new THREE.Vector3(391600, 3854400, -100), 
+                max: new THREE.Vector3(393200, 3855300, 170)
+            },
+            yaw: {
+                min: -1.5, 
+                max: 1.5
+            }, 
+            pitch: {
+                min: -10, 
+                max: 0.5
+            }, 
+            radius: {
+                min: 5, 
+                max: 1500
+            }
+        };
 	}
 
 	setScene (scene) {
@@ -239,13 +273,25 @@ export class OrbitControls extends EventDispatcher{
 			yaw -= progression * this.yawDelta;
 			pitch -= progression * this.pitchDelta;
 
+			// limit pitch and yaw, and eventually restore
+			let prevYaw = view.yaw;
+			let prevPitch = view.pitch;
+			yaw = Math.max(controls_limits.yaw.min, Math.min(controls_limits.yaw.max, yaw));
+			pitch = Math.max(controls_limits.pitch.min, Math.min(controls_limits.pitch.max, pitch));
+
 			view.yaw = yaw;
 			view.pitch = pitch;
 
 			let V = this.scene.view.direction.multiplyScalar(-view.radius);
 			let position = new THREE.Vector3().addVectors(pivot, V);
 
-			view.position.copy(position);
+			// Avoid weird pivot modification if cam going outside of bounds
+			if (position.equals(position.clone().clamp(controls_limits.cam_pos.min, controls_limits.cam_pos.max))) {
+				view.position.copy(position);
+			} else {
+				view.yaw = prevYaw;
+				view.pitch = prevPitch;
+			}
 		}
 
 		{ // apply pan
@@ -256,6 +302,13 @@ export class OrbitControls extends EventDispatcher{
 			let py = this.panDelta.y * panDistance;
 
 			view.pan(px, py);
+            
+			// Limit pan to keep pivot/target in AABB
+			let pivot_in_box = viewer.scene.view.getPivot().clone();
+			pivot_in_box.clamp(controls_limits.pivot.min, controls_limits.pivot.max);
+			view.position = new THREE.Vector3().addVectors(pivot_in_box, view.direction.multiplyScalar(-view.radius));
+			// clamp position inside box
+			view.position.clamp(controls_limits.cam_pos.min, controls_limits.cam_pos.max);
 		}
 
 		{ // apply zoom
@@ -264,6 +317,9 @@ export class OrbitControls extends EventDispatcher{
 			// let radius = view.radius + progression * this.radiusDelta * view.radius * 0.1;
 			let radius = view.radius + progression * this.radiusDelta;
 
+			// limit radius
+			radius = Math.max(controls_limits.radius.min, Math.min(controls_limits.radius.max, radius));
+		
 			let V = view.direction.multiplyScalar(-radius);
 			let position = new THREE.Vector3().addVectors(view.getPivot(), V);
 			view.radius = radius;
@@ -286,5 +342,31 @@ export class OrbitControls extends EventDispatcher{
 			// this.radiusDelta *= attenuation;
 			this.radiusDelta -= progression * this.radiusDelta;
 		}
+        
+		// UPDATE PIVOT ONCE MOTION DONE, to avoid going behind geometry
+		/*
+		let camera = this.scene.getActiveCamera();
+		camera.position.copy(this.scene.view.position);
+		camera.rotation.order = "ZXY";
+		camera.rotation.x = Math.PI / 2 + this.scene.view.pitch;
+		camera.rotation.z = this.scene.view.yaw;
+		camera.updateMatrix();
+		camera.updateMatrixWorld();
+		camera.matrixWorldInverse.getInverse(camera.matrixWorld);
+		let I = Potree.utils.getMousePointCloudIntersection(
+			new THREE.Vector2(this.renderer.domElement.clientWidth / 2, this.renderer.domElement.clientHeight / 2),
+			camera,
+			this.viewer,
+			this.scene.pointclouds,
+			{pickClipped: true});
+		if (I === null) {
+			return;
+		} else {
+			let new_pivot = I.location;
+			//console.log(new_pivot);
+			view.radius = view.position.distanceTo(new_pivot);
+			view.position = new THREE.Vector3().addVectors(new_pivot, view.direction.multiplyScalar(-view.radius));
+		}
+		*/
 	}
 };
