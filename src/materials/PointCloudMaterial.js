@@ -46,6 +46,11 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 		this._weighted = false;
 		this._gradient = Gradients.SPECTRAL;
 		this.gradientTexture = PointCloudMaterial.generateGradientTexture(this._gradient);
+
+		this._projective = Potree.PointCloudMaterial.getProjectiveCameraParams(0); 
+		this.projectiveTexture = Potree.PointCloudMaterial.generateProjectiveTexture(this._projective);
+		this.projectiveCamera = Potree.PointCloudMaterial.generateProjectiveCamera(this._projective);
+		
 		this.lights = false;
 		this.fog = false;
 		this._treeType = treeType;
@@ -133,6 +138,8 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			uFilterReturnNumberRange:		{ type: "fv", value: [0, 7]},
 			uFilterNumberOfReturnsRange:	{ type: "fv", value: [0, 7]},
 			uFilterGPSTimeClipRange:		{ type: "fv", value: [0, 7]},
+
+			projectiveTextureUniform: 	{ type: "t", value: this.projectiveTexture },
 		};
 
 		this.classification = ClassificationScheme.DEFAULT;
@@ -280,6 +287,8 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			defines.push('#define color_type_gpstime');
 		} else if (this._pointColorType === PointColorType.COMPOSITE) {
 			defines.push('#define color_type_composite');
+		} else if (this._pointColorType === Potree.PointColorType.PROJECTIVE) {
+			defines.push('#define color_type_projective');
 		}
 		
 		if(this._treeType === TreeType.OCTREE){
@@ -380,6 +389,19 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			this._gradient = value;
 			this.gradientTexture = PointCloudMaterial.generateGradientTexture(this._gradient);
 			this.uniforms.gradient.value = this.gradientTexture;
+		}
+	}
+	
+	get projective(){
+		return this._projective;
+	}
+
+	set projective (value) {
+		if (this._projective !== value) {
+			this._projective = value;
+			this.projectiveTexture = Potree.PointCloudMaterial.generateProjectiveTexture(this._projective);
+			this.uniforms.projectiveTextureUniform.value = this.projectiveTexture;
+			this.projectiveCamera = Potree.PointCloudMaterial.generateProjectiveCamera(this._projective);
 		}
 	}
 	
@@ -999,6 +1021,91 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 		texture.needsUpdate = true;
 
 		return texture;
+	}
+
+	static generateProjectiveTexture (projective) {
+		console.log(projective);
+		var img_fp = projective["file"], 
+			img_fn =  img_fp.substring(img_fp.lastIndexOf('/') + 1);
+		var url = new URL(Potree.resourcePath + "/textures/projective/" + img_fn).href;
+		console.log('\n\n' + url + '\n\n');
+		let texture = new THREE.TextureLoader().load( url );
+		texture.magFilter = texture.minFilter = THREE.LinearFilter; 
+		texture.needsUpdate = true;
+		
+		// PotreeConverter_1.6_2018_07_29_windows_x64\PotreeConverter.exe autzen_xyzrgbXYZ_ascii.xyz -f xyzrgbXYZ -a RGB NORMAL -o autzen_xyzrgbXYZ_ascii_a -p index --overwrite
+		// Switch matcap texture on the fly : viewer.scene.pointclouds[0].material.matcap = 'matcap1.jpg'; 
+		// For non power of 2, use LinearFilter and dont generate mipmaps, For power of 2, use NearestFilter and generate mipmaps : matcap2.jpg 1 2 8 11 12 13
+		return texture; 
+	}
+	static getProjectiveCameraParams(projective_idx) {
+		return data_crac["archives"]["medias"][projective_idx];
+	}
+
+	static updateProjectiveMaterialsUsingIdx(projectiveIdx) {
+		for (var j = 0; j < viewer.scene.pointclouds.length; j++) {
+			viewer.scene.pointclouds[j].material.projective =  Potree.PointCloudMaterial.getProjectiveCameraParams(projectiveIdx);
+		}
+		let projectiveCamera = viewer.scene.pointclouds[0].material.projectiveCamera;
+		var vector = new THREE.Vector3( 0, 0, -1 ).applyQuaternion( projectiveCamera.quaternion );
+		viewer.scene.view.position.copy(projectiveCamera.position);
+		viewer.scene.view.lookAt(new THREE.Vector3().add(projectiveCamera.position, vector));
+	}
+
+	static generateProjectiveCamera(projectiveCamera_params) {
+		/*
+		let projectiveCamera_params = {
+			"id": "f5a989e0-fdef-11e8-ad9c-1151bcaa27c6",
+			"file": "public/data/crac/img/A049555.jpg",
+			"thumbnail": "public/data/crac/img/A049555_tn.jpg",
+			"vFOV": 30.5564,
+			"position": {
+			  "x": 252402.87598479004,
+			  "y": 3849424.4858730407,
+			  "z": 712.5771354492188
+			},
+			"quaternion": {
+			  "_x": -0.6815929415653701,
+			  "_y": -0.23173235422026345,
+			  "_z": -0.2198099974476919,
+			  "_w": -0.658342420809905
+			},
+			"width": 5581,
+			"height": 4186,
+			"cx": 0.0351103,
+			"cy": 0.0996544
+		};
+		*/
+		//let projectiveCamera_params = data_crac["archives"]["medias"][projective_idx];
+		document.projectiveCamera_params = projectiveCamera_params;
+		
+		// Extract intrinsics and extrinsics parameters from JSON representation
+		let pos = projectiveCamera_params.position;
+		let quat = projectiveCamera_params.quaternion;
+		let imgVFOV = projectiveCamera_params.vFOV;
+		let imgDim = {
+			width: projectiveCamera_params.width,
+			height: projectiveCamera_params.height
+		};
+		let projectiveCamera = new THREE.PerspectiveCamera(
+			imgVFOV,  // fov
+			imgDim.width / imgDim.height,   // aspect
+			0.1, // near
+			10000, // far
+		);
+		projectiveCamera.position.copy(pos);
+		projectiveCamera.quaternion.copy(new THREE.Quaternion(quat._x, quat._y, quat._z, quat._w));
+		projectiveCamera.updateMatrixWorld();
+		projectiveCamera.matrixWorldInverse.getInverse(projectiveCamera.matrixWorld); 
+
+		// Deal with optical center offset
+		let cx = projectiveCamera_params.cx || 0;
+		let cy = projectiveCamera_params.cy || 0;
+		projectiveCamera.setViewOffset(
+			imgDim.width, imgDim.height,
+			imgDim.width * cx, imgDim.height * cy,
+			imgDim.width, imgDim.height);
+		return projectiveCamera;
 	}
 
 	disableEvents(){

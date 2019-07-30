@@ -105,6 +105,9 @@ uniform sampler2D visibleNodes;
 uniform sampler2D gradient;
 uniform sampler2D classificationLUT;
 
+uniform sampler2D projectiveTextureUniform;
+uniform mat4 MVP_projective;
+
 #if defined(num_shadowmaps) && num_shadowmaps > 0
 uniform sampler2D uShadowMap[num_shadowmaps];
 uniform mat4 uShadowWorldView[num_shadowmaps];
@@ -394,6 +397,21 @@ vec3 getRGB(){
 	return rgb;
 }
 
+vec3 getProjectiveTexture(){
+	// Project in projective camera frustum
+	vec4 uvw_Position = MVP_projective * vec4( position.x, position.y, position.z, 1.0 );
+	vec2 uv_Position = uvw_Position.xy / uvw_Position.w;
+	uv_Position = (uv_Position * .5) + .5;
+
+	// Get rgb from texture
+	vec3 rgb = texture2D(projectiveTextureUniform, uv_Position).rgb;
+	if ((uvw_Position.w < 0.) || (uv_Position.x < 0.) || (uv_Position.y < 0.) || (uv_Position.x > 1.) || (uv_Position.y > 1.)) {
+		rgb = vec3(1., 1., 1.);
+		//rgb = color;
+	}
+	return rgb; 
+}
+
 float getIntensity(){
 	float w = (intensity - intensityRange.x) / (intensityRange.y - intensityRange.x);
 	w = pow(w, intensityGamma);
@@ -535,6 +553,8 @@ vec3 getColor(){
 		color = color;
 	#elif defined color_type_composite
 		color = getCompositeColor();
+	#elif defined color_type_projective
+		color = getProjectiveTexture();
 	#endif
 	
 	return color;

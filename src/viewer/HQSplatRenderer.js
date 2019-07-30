@@ -189,6 +189,9 @@ export class HQSplatRenderer{
 				attributeMaterial.elevationRange = material.elevationRange;
 				attributeMaterial.gradient = material.gradient;
 
+				attributeMaterial.projective = material.projective;
+				attributeMaterial.projectiveTextureUniform = material.projectiveTextureUniform;
+
 				attributeMaterial.intensityRange = material.intensityRange;
 				attributeMaterial.intensityGamma = material.intensityGamma;
 				attributeMaterial.intensityContrast = material.intensityContrast;

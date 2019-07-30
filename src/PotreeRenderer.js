@@ -502,7 +502,7 @@ class WebGLTexture {
 			gl.texImage2D(this.target, level, internalFormat,
 				width, height, border, srcFormat, srcType,
 				data);
-		} else if (texture instanceof THREE.CanvasTexture) {
+		} else if ((texture instanceof THREE.CanvasTexture) || (texture instanceof THREE.Texture)) {
 			data = texture.image;
 
 			gl.texParameteri(this.target, gl.TEXTURE_WRAP_S, paramThreeToGL(gl, texture.wrapS));
@@ -670,6 +670,16 @@ export class Renderer {
 
 		let mat4holder = new Float32Array(16);
 
+		// projective texturing
+		let projectiveCamera, projectiveView, projectiveProjection;
+		if (nodes.length > 0) {
+			projectiveCamera = nodes[0].pointcloud.material.projectiveCamera;
+			projectiveView = projectiveCamera.matrixWorldInverse;
+			projectiveProjection = projectiveCamera.projectionMatrix;
+		}
+		let projectiveWorldView = new THREE.Matrix4();
+		let MVP_projective = new THREE.Matrix4();
+
 		let gpsMin = Infinity;
 		let gpsMax = -Infinity
 		for (let node of nodes) {
@@ -748,6 +758,18 @@ export class Renderer {
 				mat4holder[j] = worldView.elements[j];
 			}
 			gl.uniformMatrix4fv(lModelView, false, mat4holder);
+
+			// projective texturing
+			//let world = node.sceneNode.matrixWorld;
+			projectiveWorldView.multiplyMatrices(projectiveView, world);
+			MVP_projective.multiplyMatrices(projectiveProjection, projectiveWorldView);
+			const lMVP_projective = shader.uniformLocations["MVP_projective"];
+			//mat4holder.set(worldView.elements);
+			// faster then set in chrome 63
+			for(let j = 0; j < 16; j++){
+				mat4holder[j] = MVP_projective.elements[j];
+			}
+			gl.uniformMatrix4fv(lMVP_projective, false, mat4holder);
 
 			{ // Clip Polygons
 				if(material.clipPolygons && material.clipPolygons.length > 0){
@@ -1208,6 +1230,12 @@ export class Renderer {
 			shader.setUniform1i("classificationLUT", currentTextureBindingPoint);
 			gl.activeTexture(gl.TEXTURE0 + currentTextureBindingPoint);
 			gl.bindTexture(classificationTexture.target, classificationTexture.id);
+			currentTextureBindingPoint++;
+
+			let projectiveTexture = this.textures.get(material.projectiveTexture);
+			shader.setUniform1i("projectiveTextureUniform", currentTextureBindingPoint);
+			gl.activeTexture(gl.TEXTURE0 + currentTextureBindingPoint);
+			gl.bindTexture(projectiveTexture.target, projectiveTexture.id);
 			currentTextureBindingPoint++;
 
 
