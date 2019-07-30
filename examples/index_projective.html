@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Potree Viewer</title>
+
+	<link rel="stylesheet" type="text/css" href="../build/potree/potree.css">
+	<link rel="stylesheet" type="text/css" href="../libs/jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../libs/perfect-scrollbar/css/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../libs/openlayers3/ol.css">
+	<link rel="stylesheet" type="text/css" href="../libs/spectrum/spectrum.css">
+	<link rel="stylesheet" type="text/css" href="../libs/jstree/themes/mixed/style.css">
+</head>
+
+<body>
+
+	<script src="mcc_crac_archives.json" ></script>
+
+	<script src="../libs/jquery/jquery-3.1.1.min.js"></script>
+	<script src="../libs/spectrum/spectrum.js"></script>
+	<script src="../libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+	<script src="../libs/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../libs/three.js/build/three.min.js"></script>
+	<script src="../libs/other/BinaryHeap.js"></script>
+	<script src="../libs/tween/tween.min.js"></script>
+	<script src="../libs/d3/d3.js"></script>
+	<script src="../libs/proj4/proj4.js"></script>
+	<script src="../libs/openlayers3/ol.js"></script>
+	<script src="../libs/i18next/i18next.js"></script>
+	<script src="../libs/jstree/jstree.js"></script>
+	<script src="../build/potree/potree.js"></script>
+	<script src="../libs/plasio/js/laslaz.js"></script>
+	
+	<div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
+		<div id="potree_render_area"></div>
+		<div id="potree_sidebar_container"> </div>
+	</div>
+	<div style="position: absolute; right: 10px; top: 10px; z-index: 100; font-weight: bold; color: white; font-size: 40px; ">
+		<div style="padding: 10px;" onclick="Potree.PointCloudMaterial.updateProjectiveMaterialsUsingIdx(projectiveIdx++)">⬆</div>
+		<div style=" padding: 10px;" onclick="Potree.PointCloudMaterial.updateProjectiveMaterialsUsingIdx(--projectiveIdx)">⬇</div>
+	</div>
+	
+	
+	<script>
+		projectiveIdx = 0;
+		cloud_fps = [
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
+			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
+		];
+		cloud_fps = [
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
+			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
+		];
+
+		//cam_bundler_data = cracdeschevaliers_cam_bundler_data;
+		//cam_bundler_list = cracdeschevaliers_cam_bundler_list;
+		//n_cams = 1
+		plane_texture_prefix = 'file:///';
+		
+
+		// Cam scale, and Nx Ny needed for correct focal length on ricohs
+        var scaleCam = 1;
+		var pixel_Nx = 4928, 
+			pixel_Ny = 3264;
+		
+		// Choose cloud filepath, bundler data depending on test_idx
+		var cloud_fp, cam_bundler_data, cam_bundler_list, n_cams, plane_texture_prefix;
+		
+		// Define camera material so only store two mats and switch when hovered
+		var mesh_intersected_material = default_pyramid_material(),
+		    default_mesh_material = default_pyramid_material();
+		mesh_intersected_material.color.setHex( 0xff0000 );
+		var hovered_cam_matrix = new THREE.Matrix4(), 
+			viewer_cam_matrix = new THREE.Matrix4();
+		
+		var raycaster = new THREE.Raycaster(),
+		    mesh_intersected = null, 
+			mesh_picked = null;
+
+			
+		function add_potree_viewer() {
+			window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
+			viewer.setEDLEnabled(true);
+			viewer.setFOV(60);
+			viewer.setPointBudget(10*1000*1000);
+			viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
+			viewer.loadSettingsFromURL();
+
+			
+			viewer.loadGUI(() => {
+				viewer.setLanguage('en');
+				$("#menu_appearance").next().show();
+				$("#menu_tools").next().show();
+				$("#menu_scene").next().show();
+				viewer.toggleSidebar();
+			});
+			
+				
+		}
+        
+		function add_pointclouds_to_scene(cloud_fps) {
+            var first_ptc_loaded = false;
+            cloud_fps.forEach(function (cloud_fp) {
+                Potree.loadPointCloud(cloud_fp, cloud_fp, e => {
+                    let pointcloud = e.pointcloud;
+                    let material = pointcloud.material;
+                    viewer.scene.addPointCloud(pointcloud);
+                    // Set pointcloud material
+                    material.pointColorType = Potree.PointColorType.RGB; // any Potree.PointColorType.XXXX 
+                    material.pointColorType = Potree.PointColorType.PROJECTIVE;
+                    material.size = 1;
+                    material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+                    material.shape = Potree.PointShape.CIRCLE;
+					
+					viewer.fitToScreen();
+					
+					/*
+					var vector = new THREE.Vector3( 0, 0, -1 ).applyQuaternion( projectiveCamera.quaternion );
+					viewer.scene.view.position.copy(projectiveCamera.position);
+					viewer.scene.view.lookAt(new THREE.Vector3().add(projectiveCamera.position, vector));
+                    */
+
+                    // Sync potree and mapbox and add cameras from bundler
+                    potree_loaded = true; 
+                    if (!first_ptc_loaded) {
+                        //add_cameras_mapbox_potree();
+                        first_ptc_loaded = true;
+                    }
+				});	
+            });
+		}
+			
+		// Create pyramids
+		add_potree_viewer();
+		add_pointclouds_to_scene(cloud_fps);
+		
+		// Add plane with image texture
+		var plane_texture = new THREE.TextureLoader().load( 'cliff2_5M_potree\\input_images\\R0115640.JPG' );
+		var plane_mesh;
+		
+		// Add map to make correspondence between 3D and map
+		var pyramid_geometry = cam_pyramid_geometry(),
+		    hovered_map_pyramid_material = new THREE.MeshStandardMaterial( { 
+				color: 0xffffff, 
+				shading: THREE.FlatShading,
+				wireframe: false} );
+		hovered_map_pyramid_material.wireframe = false;
+		hovered_map_pyramid_material.color.setHex( 0x0000ff );
+		var hovered_map_pyramid_mesh = new THREE.Mesh( pyramid_geometry, hovered_map_pyramid_material );
+		//viewer.scene.scene.add(hovered_map_pyramid_mesh);
+		
+		// FUNCTIONS
+		
+        
+		function cam_pyramid_geometry() {
+			// ADD CAMERA GEOMETRY
+			var geometry = new THREE.Geometry();
+			geometry.vertices = [
+				new THREE.Vector3( 0, 0, 0 ),
+				new THREE.Vector3( -0.5, -0.5, -1 ),
+				new THREE.Vector3( -0.5, +0.5, -1 ),
+				new THREE.Vector3( +0.5, +0.5, -1 ),
+				new THREE.Vector3( +0.5, -0.5, -1 )
+			];
+			geometry.faces = [
+				new THREE.Face3( 0, 2, 1 ),
+				new THREE.Face3( 0, 3, 2 ),
+				new THREE.Face3( 0, 4, 3 ),
+				new THREE.Face3( 0, 1, 4 ),
+				// Last two faces are needed for handling picking from this side (when facing the camera)
+				// new THREE.Face3( 1, 2, 3 ), // Triangle 1 for image
+				// 	new THREE.Face3( 1, 3, 4 )  // Triangle 2 for image
+			];
+			return geometry;
+		}
+		
+        function default_pyramid_material() {
+			//var material = new THREE.MeshStandardMaterial( { 
+			//	color: 0x0055ff, 
+			//	shading: THREE.FlatShading,
+			//	wireframe: false,
+			//	metalness: 0.2} );
+			//var material = new THREE.LineBasicMaterial( { color: 0x0055ff, linewidth: 2 } );
+				
+			// Define custom material for individual material editing when picking
+			var material = new THREE.MeshBasicMaterial( { 
+				color: 0xffffff, 
+				shading: THREE.FlatShading,
+				wireframe: true} );
+			return material;
+		}
+		
+		function mat4ToString(mat) {
+            var e = mat.elements;
+            return e[0].toFixed(2) + "\t" + e[4].toFixed(2) + '\t' + e[8].toFixed(2) + '\t' + e[12].toFixed(2) + '\n' +
+                e[1].toFixed(2) + "\t" + e[5].toFixed(2) + '\t' + e[9].toFixed(2) + '\t' + e[13].toFixed(2) + '\n' +
+                e[2].toFixed(2) + "\t" + e[6].toFixed(2) + '\t' + e[10].toFixed(2) + '\t' + e[14].toFixed(2) + '\n' +
+				e[3].toFixed(2) + "\t" + e[7].toFixed(2) + '\t' + e[11].toFixed(2) + '\t' + e[15].toFixed(2);
+		}
+		
+		
+		// Scale is obtained through focal, image ratio, we can let the sensor size as equivalent 35mm
+		function get_pyramid_sensor_scale(intrinsic_f_k1_k2) {
+			var focal_pixel = intrinsic_f_k1_k2[0];
+			//var sensor_width = 0.036, 
+			//	sensor_height = 0.024;
+			// var focal_mm = focal_pixel * 0.036 / 6000, // These can be kept as is, they are here to give a non debile scale for most camera setups
+			// 	scaleZ = focal_mm / 0.030; 
+			// Suppose a 24Mpix 6000x4000, full frame 36x24mm. This will result in focal_length = 30mm approx (for given focal_pixel if alignment correct), most frequently used
+			// Then set scaleX and scaleY, only dependent of chosen scaleZ and sensor dimensions (these however are camera specifics)
+			// var scaleZ = 1, 
+			// 	scaleX = scaleZ / focal_mm * sensor_width * 0.5, 
+			//	scaleY = scaleZ / focal_mm * sensor_height * 0.5;
+			var scaleZ = 1, 
+				scaleX = scaleZ / focal_pixel * pixel_Nx, 
+			    scaleY = scaleZ / focal_pixel * pixel_Ny;
+			return new THREE.Vector3(scaleX, scaleY, scaleZ);
+		}
+		
+			function parseArrayFloat(arril, doLog) {
+                if (doLog) {
+                    //console.log('To');
+                    //console.log(arril);
+                    //console.log('yo');
+                }
+                var y = arril.split(' ');
+                if (doLog) {
+                    //console.log('To2');
+                    //console.log(arril);
+                    //console.log('yo2');
+                }
+                var z = y.map(function(el) {return parseFloat(el);});
+                return z;
+            }
+
+        var meshes = [];
+		function create_cameras_from_bundler(n_cams) {
+            // Set from bundler data : https://github.com/snavely/bundler_sfm#output-format
+				
+			var pyramid_geometry = cam_pyramid_geometry();
+			var pyramid_material = default_pyramid_material();
+			var invert_yz_mat4 = new THREE.Matrix4();
+			invert_yz_mat4.set( 1, 0, 0, 0,
+				0, 0, 1, 0,
+				0, -1, 0, 0,
+				0, 0, 0, 1);
+			
+			/*
+			// Define matrix in one go, actually less clear
+			var matrix_elements = bundler_lines.slice(1,5).map(function(line) {return line.split(' ');});
+			matrix_elements.slice(0,4).map(function(line, idx) {return line.push(matrix_elements[3][idx]);});
+			matrix_elements[3] = ['0', '0', '0', '1'];
+			matrix_elements_list = matrix_elements.reduce(function(concated, left){return concated.concat(left);}).map(function(el) {return parseFloat(el);});
+			var mat = new THREE.Matrix4();
+			mat.set.apply(mat, matrix_elements_list);
+			*/
+			
+			var bundler_lines = cam_bundler_data.split('\n'), 
+				cam_bundler_filepaths = cam_bundler_list.split('\n') ;
+            console.log(bundler_lines.length); // 61265
+			
+            plane_mesh = cam_plane_mesh();
+            viewer.scene.scene.add(plane_mesh);
+            
+			for (var i = 0; i < n_cams; i++) {
+                //if (i_bloc >= 61264 && i_bloc <= 61266) 
+                //    continue;
+				var i_bloc = 5 * i;
+				var a = bundler_lines[0 + i_bloc];
+				var b = bundler_lines[1 + i_bloc];
+				var c = bundler_lines[2 + i_bloc];
+				var d = bundler_lines[3 + i_bloc];
+				var e = bundler_lines[4 + i_bloc];
+
+				var intrinsic_f_k1_k2 = parseArrayFloat(a, false);
+				var bundler_rot_0 = parseArrayFloat(b, i_bloc >= 61264 && i_bloc <= 61286);
+				var bundler_rot_1 = parseArrayFloat(c, false); 
+				var bundler_rot_2 = parseArrayFloat(d, false); 
+				var bundler_pos = parseArrayFloat(e, false);
+				
+				/*var cam1_bundler_data = `2203.977326292038 0 0
+					-0.9678917018583765 1.216975271729065e-002 -0.2510727993879375
+					0.1922070012469009 -0.6078647509830519 -0.7704264489125396
+					-0.1619942040486924 -0.7939473166596839 0.5860081366529977
+					1340690.395650478 3069929.992424063 -2330673.367796847`;
+				var bundler_lines = cam1_bundler_data.split('\n');*/
+				
+				// Define world coordinates to cam coordinates matrix as the one described in the bundler format
+				var world_cam_matrix = new THREE.Matrix4(), 
+					world_cam_matrix_inv = new THREE.Matrix4();
+				world_cam_matrix.set( bundler_rot_0[0], bundler_rot_1[0], bundler_rot_2[0], 0,
+				   bundler_rot_0[1], bundler_rot_1[1], bundler_rot_2[1], 0,
+				   bundler_rot_0[2], bundler_rot_1[2], bundler_rot_2[2], 0,
+				   bundler_pos[0], bundler_pos[1], bundler_pos[2], 1 );
+				world_cam_matrix.transpose();
+				
+				// Invert it to get the cam to world transformation, and therefore get cam origin and rotation / Transpose and axes inversion between Y-Z
+				world_cam_matrix_inv.getInverse(world_cam_matrix);
+				world_cam_matrix_inv.multiplyMatrices(invert_yz_mat4, world_cam_matrix_inv);
+				
+				// Add mesh to scene and array
+				var pyramid_mesh = new THREE.Mesh( pyramid_geometry, default_mesh_material );
+				pyramid_mesh.name = cam_bundler_filepaths[i];
+				viewer.scene.scene.add(pyramid_mesh);
+				meshes.push(pyramid_mesh);
+				
+				// Apply matrix
+				pyramid_mesh.applyMatrix(world_cam_matrix_inv);
+				
+				// Deal with focal
+				// focal length in pixels = (image width in pixels) * (focal length in mm) / (CCD width in mm) 
+				// http://phototour.cs.washington.edu/focal.html
+				cam_scale = get_pyramid_sensor_scale(intrinsic_f_k1_k2);
+				pyramid_mesh.scale.set(cam_scale.x, cam_scale.y, cam_scale.z);
+				pyramid_mesh.scale.multiplyScalar(scaleCam);
+				pyramid_mesh.cam_scale = cam_scale;
+				pyramid_mesh.updateMatrix();
+				
+				// Append features to geojson array
+				if (viewer.mapView.sceneProjection) {
+					sceneToWgs84Projection = proj4(viewer.mapView.sceneProjection, proj4.defs('EPSG:4326'));
+					media_lnglat = sceneToWgs84Projection.forward([pyramid_mesh.position.x, pyramid_mesh.position.y]);
+					var media_point = {
+						"type": "Feature",
+						"geometry": {
+							"type": "Point",
+							"coordinates": media_lnglat
+						},
+						"properties": {
+							"id": pyramid_mesh.name, 
+							"matrix": pyramid_mesh.matrix
+						}
+					};
+					geojson_collection.features.push(media_point);
+				}
+			}
+		}
+		
+		// Pick camera
+		// Raycaster for picking selected camera mesh, see github source
+		// https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html
+		
+		function cam_plane_mesh() {
+			// Init plane with correct UVs for displaying the image - same coords than base of camera pyramid cone, and uv as lower left, ... for the 2 faces (triangles)
+			var plane_geometry = new THREE.Geometry();
+			plane_geometry.vertices = [
+				new THREE.Vector3( -0.5, -0.5, -1 ),
+				new THREE.Vector3( -0.5, +0.5, -1 ),
+				new THREE.Vector3( +0.5, +0.5, -1 ),
+				new THREE.Vector3( +0.5, -0.5, -1 )
+			];
+			plane_geometry.faces = [
+				new THREE.Face3( 0, 1, 2 ), // Triangle 1 for image
+				new THREE.Face3( 0, 2, 3 )  // Triangle 2 for image
+			];
+			plane_geometry.faceVertexUvs[0] = [[
+				new THREE.Vector2( 0, 0 ),
+				new THREE.Vector2( 0, 1 ),
+				new THREE.Vector2( 1, 1 )
+			], [
+				new THREE.Vector2( 0, 0 ),
+				new THREE.Vector2( 1, 1 ),
+				new THREE.Vector2( 1, 0 )
+			]];
+			plane_geometry.faces[0].materialIndex = 0;
+			plane_geometry.faces[1].materialIndex = 0;
+			
+			var plane_material = new THREE.MeshBasicMaterial({
+				map: plane_texture, 
+				side: THREE.DoubleSide, 
+				//color: 0x000000, 
+				opacity: 1, 
+				transparent: true});
+			var plane_mesh = new THREE.Mesh( plane_geometry, plane_material);
+			plane_mesh.isNotImagePlane = true;
+			return plane_mesh;
+		}
+		
+		function update_image_plane(mesh_intersected) {
+			if (test_idx == 0)
+				image_fn = plane_texture_prefix + mesh_intersected.name.substring(mesh_intersected.name.lastIndexOf('\\') + 1);
+			else
+				image_fn = (plane_texture_prefix + mesh_intersected.name).split('\\').join('/');
+			console.log(image_fn);
+            var loader = new THREE.TextureLoader();
+            //loader.crossOrigin = "";
+            //THREE.ImageUtils.crossOrigin = '';
+            plane_texture = loader.load( image_fn );
+			plane_mesh.material.map = plane_texture;
+			plane_mesh.matrix.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+			plane_mesh.applyMatrix(mesh_intersected.matrix);
+		}
+		
+		// Set camera view when right clicking (potree prevents access to keyboard events)
+		
+		// Set correct lookat and position for camera to match image
+		function set_view_to_camera(){
+			// Useful issue from bugdanov, working on doxel viewer: https://github.com/potree/potree/issues/300
+			// Set camera position (mesh pos), then lookAt as cam position + a small vector towards camera direction (third column of rotation matrix, cam z in world coordinates)
+			hovered_cam_matrix.copy(mesh_picked.matrix);
+			var viewDir = new THREE.Vector3(mesh_picked.matrix.elements[8], mesh_picked.matrix.elements[9], mesh_picked.matrix.elements[10]),
+				camLookat = mesh_picked.position.clone().sub(viewDir);
+			mesh_picked.camLookat = camLookat;
+			// set camera position and lookat
+			viewer.scene.view.position.set(mesh_picked.position.x, mesh_picked.position.y, mesh_picked.position.z );
+			viewer.scene.view.lookAt(camLookat);
+			// Could also set yaw rotation (left-right, viewer.scene.view.yaw) or pitch rotation (up-down), but less clear than lookAt
+			// Roll is still missing, rotation around camera view axis to correctly have all info
+			
+			window.setTimeout(function() {set_fov_matching_image(mesh_picked);}, 100);
+		}
+		
+		// Set correct FOV to match that of camera
+		function get_fov_matching_image(obj_cam){			
+			// Get transformation matrix from local camera coordinates to viewer coordinates - by passing by world coordinates using
+			// localToViewer = viewerMatrixT * obj_cam.matrix = localToWorld * worldToViewer
+			var viewerMatrixT = viewer.scene.camera.matrix.clone();
+			viewerMatrixT.transpose();
+			var localToViewer = new THREE.Matrix4();
+			localToViewer.multiplyMatrices(viewerMatrixT, obj_cam.matrix);
+			// Set viewer dimensions arbitrarily using aspect ratio, and compute a scale factor to fir boundix box of dimensions boxWidth, boxHeight
+			var viewerHeight = 1,
+				viewerWidth = viewer.scene.camera.aspect;
+			var boxWidth = Math.abs(localToViewer.elements[0]) + Math.abs( localToViewer.elements[4]),
+				boxHeight = Math.abs(localToViewer.elements[1]) + Math.abs( localToViewer.elements[5]);
+			// Compute scale factor, deduce, real viewer height that adapt to fit bounding box of camera, and compute vertical fov from it
+			var scaleFactor = Math.max(boxWidth / viewerWidth, boxHeight / viewerHeight),
+				newHeight = viewerHeight * scaleFactor,
+			    viewerFOV = 2 * Math.atan(newHeight / (2 * obj_cam.cam_scale.z));
+			viewerFOV = viewerFOV * 180 / Math.PI;
+			return viewerFOV;
+			/*
+			// Working version from computing theta angle between camera and view axes, might be more intensive
+			var camX = new THREE.Vector3(-obj_cam.matrix.elements[0], -obj_cam.matrix.elements[1], -obj_cam.matrix.elements[2]),
+			    viewerX = new THREE.Vector3(viewer.scene.camera.matrix.elements[0], viewer.scene.camera.matrix.elements[1], viewer.scene.camera.matrix.elements[2]),
+			    camY = new THREE.Vector3(-obj_cam.matrix.elements[4], -obj_cam.matrix.elements[5], -obj_cam.matrix.elements[6]),
+			    viewerY = new THREE.Vector3(viewer.scene.camera.matrix.elements[4], viewer.scene.camera.matrix.elements[5], viewer.scene.camera.matrix.elements[6]);
+			camX.normalize();
+			viewerX.normalize();
+			var theta = Math.acos(camX.dot(viewerX));                        
+			var boxWidth = Math.abs(obj_cam.cam_scale.x * Math.cos(theta)) + Math.abs(obj_cam.cam_scale.y * Math.sin(theta)), 
+			    boxHeight = Math.abs(obj_cam.cam_scale.y * Math.cos(theta)) + Math.abs(obj_cam.cam_scale.x * Math.sin(theta));
+			*/
+		}
+		
+		function set_fov_matching_image(obj_cam){
+			var viewerFOV = get_fov_matching_image(obj_cam);
+			mesh_picked.viewerFOV = viewerFOV;
+			viewer.setFOV(viewerFOV);
+			// Store camera with rotated axes
+			viewer_cam_matrix = viewer.scene.camera.matrix.clone();
+		}
+		
+		// Set pitch yaw while still matching camera position to zoom on picture
+		function set_pitch_yaw_from_mouse( event ) {
+			if (mesh_picked) 
+				viewer.setFOV(mesh_picked.viewerFOV * fovScaleRatio);
+			// Compute pitch and yaw from mouse position on screen
+			var mouseX = ( event.clientX / potree_div_width ) * 2 - 1, 	   // window.innerWidth
+				mouseY = - ( (event.clientY - potree_div_top) / potree_div_height ) * 2 + 1, // window.innerHeight
+				yaw = 0.25 * mouseX * Math.PI,
+				pitch = -0.5 * mouseY * Math.PI / 2,
+				roll = 0;
+			// Define rotation matrix from euler angles to apply to view direction
+			var rotLookAt = new THREE.Matrix4(), 
+				rotPitchX = new THREE.Matrix4(), // rotate around local X, to get lookAt in Y direction of camera
+				rotYawY = new THREE.Matrix4(),   // rotate around local Y, to get lookAt in X direction of camera
+				camToWorld = new THREE.Matrix4();
+			// yaw (Y) first, pitch (X) second // rotation.order = "YXZ"; // three.js r.65
+			rotPitchX.makeRotationX( pitch );
+			rotYawY.makeRotationY( yaw );
+			rotLookAt.multiplyMatrices ( rotPitchX, rotYawY );
+			camToWorld.copy(viewer_cam_matrix);
+			rotLookAt.multiplyMatrices(camToWorld, rotLookAt);
+
+			// Compute rotated view direction
+			var rotatedViewDir = new THREE.Vector3(rotLookAt.elements[8], rotLookAt.elements[9], rotLookAt.elements[10]);
+			var rotatedCamLookat = new THREE.Vector3( hovered_cam_matrix.elements[12], hovered_cam_matrix.elements[13], hovered_cam_matrix.elements[14] );
+			rotatedCamLookat.sub(rotatedViewDir);
+			viewer.scene.view.lookAt(rotatedCamLookat);
+			
+			// Hint using transformDirection
+			// rotLookAt.makeRotationFromEuler(new THREE.Euler( pitch, yaw, roll, 'YXZ' )); // or try pitch, roll, yaw, 'ZXY' // ZYX 
+			//var rayOrigin = new THREE.Vector3(), 
+			//	rayDirection = new THREE.Vector3();
+			//rayOrigin.setFromMatrixPosition( camera.matrixWorld );
+			//rayDirection.set( coords.x, coords.y, 0.5 ).unproject( camera ).sub( this.ray.origin ).normalize();
+		}
+		
+		
+		// GOOD EXAMPLE: https://www.mapbox.com/mapbox-gl-js/example/measure/
+		// SYNC MAPBOX AND POTREE LOADING SO THAT ONLY DO IT ONCE EVERYTHING IS LOADED
+		function add_cameras_mapbox_potree() {
+			if (! (potree_loaded && map_loaded)) 
+				return;
+		
+			// Define projcetion, useful for camera coordniates conversino to lnglat
+			// Set mapView without the need to call loadGUI
+			/*viewer.loadGUI(() => {
+				viewer.setLanguage('en');
+				$("#menu_scene").next().show();
+			});*/
+			viewer.mapView = new Potree.MapView(viewer);
+			viewer.mapView.init();
+
+			create_cameras_from_bundler(n_cams);
+			if (viewer.mapView.sceneProjection) {
+                console.log('viewer.mapView.sceneProjection')
+				var wgs84Projection = proj4.defs('EPSG:4326');
+				sceneToWgs84Projection = proj4(viewer.mapView.sceneProjection, wgs84Projection);
+				
+				// Add camera to threejs scene - and add efatures to geojson layer in the maentime - and then add layers to map
+				add_mapbox_layers();
+			}
+		}
+		
+
+
+
+	</script>
+	
+	
+  </body>
+</html>

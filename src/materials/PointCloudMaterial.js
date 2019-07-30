@@ -47,7 +47,7 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 		this._gradient = Gradients.SPECTRAL;
 		this.gradientTexture = PointCloudMaterial.generateGradientTexture(this._gradient);
 
-		this._projective = Potree.PointCloudMaterial.getProjectiveCameraParams(0); 
+		this._projective = Potree.PointCloudMaterial.getProjectiveCameraParams(5); 
 		this.projectiveTexture = Potree.PointCloudMaterial.generateProjectiveTexture(this._projective);
 		this.projectiveCamera = Potree.PointCloudMaterial.generateProjectiveCamera(this._projective);
 		
@@ -1028,6 +1028,7 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 		var img_fp = projective["file"], 
 			img_fn =  img_fp.substring(img_fp.lastIndexOf('/') + 1);
 		var url = new URL(Potree.resourcePath + "/textures/projective/" + img_fn).href;
+		//var url = new URL("C:/Users/delos/Desktop/Dev/4_PointcloudProcessing/_projective_texturing_/libs/potree/resources/textures/projective/textures/projective/" + img_fn).href;
 		console.log('\n\n' + url + '\n\n');
 		let texture = new THREE.TextureLoader().load( url );
 		texture.magFilter = texture.minFilter = THREE.LinearFilter; 

@@ -72,6 +72,12 @@ let shaders = [
 	"src/materials/shaders/pointcloud.gl2.fs",
 ];
 
+gulp.task('build_and_copytocrac', function () {
+	console.log("\n\nCOPY TO CRAC \n\n:");
+    return gulp.src([
+      'build/potree/potree.js',
+    ]).pipe(gulp.dest('C:/Users/delos/Desktop/Dev/4_PointcloudProcessing/_projective_texturing_/libs/potree'));
+});
 
 gulp.task("workers", function(){
 
@@ -105,10 +111,19 @@ gulp.task("build", ['workers','shaders', "icons_viewer", "examples_page"], funct
 	return;
 });
 
+
+
+var cors = function (req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Authorization');
+	next();
+  };
+
+
 // For development, it is now possible to use 'gulp webserver'
 // from the command line to start the server (default port is 8080)
 gulp.task('webserver', function() {
-	server = connect.server({port: 1234});
+	server = connect.server({port: 1212, livereload: true, middleware: function () {return [cors];}});
 });
 
 gulp.task('examples_page', function() {
@@ -392,9 +407,8 @@ gulp.task('icons_viewer', function() {
 
 });
 
-gulp.task('watch', ["build", "webserver"], function() {
-	//gulp.run("build");
-
+gulp.task('watch', ["webserver"], function() {
+	
 	exec('rollup -c', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.log(stderr);
@@ -414,7 +428,7 @@ gulp.task('watch', ["build", "webserver"], function() {
 
 	let blacklist = [
 		'resources/icons/index.html'
-	];
+		];
 
 	let watcher = watch(watchlist, cb => {
 
@@ -429,13 +443,19 @@ gulp.task('watch', ["build", "webserver"], function() {
 		console.log("===============================");
 		console.log("watch event:");
 		console.log(cb);
-		gulp.run("build");
 
-		exec('rollup -c', function (err, stdout, stderr) {
-			console.log(stdout);
-			console.log(stderr);
-			//cb(err);
+		gulp.run("build", function (err, stdout, stderr) {
+			exec('rollup -c', function (err, stdout, stderr) {
+				console.log(stdout);
+				console.log(stderr);
+				//cb(err);
+				gulp.run("build_and_copytocrac", ()=>{
+					gulp.src("file:///C:/Users/delos/Desktop/Dev/4_PointcloudProcessing/_projective_texturing_/index_projective.html")
+					.pipe(connect.reload());
+				});
+			});
 		});
+		
 	});
 
 });

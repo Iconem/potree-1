@@ -1,0 +1,3017 @@
+var data_crac = {
+    "potreeUrls": [
+        {
+            "value": "Zone DP",
+            "url": "http://192.168.1.16:8081/zone_DP/cloud.js"
+        },
+        {
+            "value": "Zone East 1",
+            "url": "http://192.168.1.16:8081/zone_East1/cloud.js"
+        },
+        {
+            "value": "Zone East 2",
+            "url": "http://192.168.1.16:8081/zone_East2/cloud.js"
+        },
+        {
+            "value": "Zone HG filter",
+            "url": "http://192.168.1.16:8081/zone_HG_filter/cloud.js"
+        },
+        {
+            "value": "Zone IM 1 North",
+            "url": "http://192.168.1.16:8081/zone_IM_1North/cloud.js"
+        },
+        {
+            "value": "Zone IM 2 South",
+            "url": "http://192.168.1.16:8081/zone_IM_2South/cloud.js"
+        },
+        {
+            "value": "Zone K",
+            "url": "http://192.168.1.16:8081/zone_K/cloud.js"
+        },
+        {
+            "value": "Zone North",
+            "url": "http://192.168.1.16:8081/zone_North/cloud.js"
+        },
+        {
+            "value": "Zone OHK",
+            "url": "http://192.168.1.16:8081/zone_OHK/cloud.js"
+        },
+        {
+            "value": "Zone South",
+            "url": "http://192.168.1.16:8081/zone_South/cloud.js"
+        },
+        {
+            "value": "Zone West",
+            "url": "http://192.168.1.16:8081/zone_West/cloud.js"
+        },
+        {
+            "value": "Pilier",
+            "url": "http://192.168.1.16:8081/Pilier_Crac_des_Chevaliers_potree_def/pointclouds/index/cloud.js",
+            "shift": [252325.569515, 3849357.28899, 699.474547498],
+            "rotation": [0, 0, -0.3140864559636693],
+            "scale": [0.383510003578131, 0.383510003578131, 0.383510003578131]
+        }
+    ],
+    "visit": {
+      "path": {   
+        "id": "path0",
+            "name": "Path-0",
+            "cameraType": "simple",
+            "fps": 25,
+            "posInterpolation": "smooth",
+            "quatInterpolation": "smooth",
+            "fovInterpolation": "smooth",
+            "animationTime": 44,
+            "shift": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "quaternion": {
+                "_x": 0,
+                "_y": 0,
+                "_z": 0,
+                "_w": 1
+            },
+            "cameras": [
+                {
+                    "id": "581beed0-fc7c-11e8-bc2f-651822913845",
+                    "file": "public/data/crac/img/001-03-01-01_01_small.jpg",
+                    "thumbnail": "public/data/crac/img/001-03-01-01_01_small_tn.jpg",
+                    "date": 1927,
+                    "period": "1927-1936",
+                    "title": {
+                      "en": "Aerial view of the Krak of the Knights",
+                      "fr": "Vue aérienne oblique"
+                    },
+                    "description": {
+                      "en": "",
+                      "fr": "Joyau de l'architecture militaire des XIIe et XIIIe siècles, le Crac des Chevaliers (Qal'at al-Hosn) est la plus emblématique des forteresses construites par les croisés au Proche-Orient, par la qualité de sa construction et par son état de conservation exceptionnel."
+                    },
+                    "credits": {
+                      "en": "INHA",
+                      "fr": "INHA"
+                    },
+                    "timing": 0,
+                    "vFOV": 30.1553,
+                    "position": {
+                      "x": 251736.92863269043,
+                      "y": 3849496.55074624,
+                      "z": 1102.3118833007811
+                    },
+                    "quaternion": {
+                      "_x": 0.35770332242451136,
+                      "_y": -0.3925729139568759,
+                      "_z": -0.6223594331183707,
+                      "_w": 0.5749813704481682
+                    },
+                    "width": 3000,
+                    "height": 2280,
+                    "cx": 0.0348967,
+                    "cy": 0.208744
+                },
+                {
+                  "id": "55eeecf0-fc8d-11e8-9e6d-69f75bb3ee44",
+                  "file": "public/data/crac/img/09-504707.jpg",
+                  "thumbnail": "public/data/crac/img/09-504707_tn.jpg",
+                  "date": 1859,
+                  "period": "1859",
+                  "title": {
+                    "en": "General view of the Krak of the Knights",
+                    "fr": "L'une des plus anciennes photos du Crac"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Le Crac des Chevaliers domine la plaine fertile de la Boquée et commande deux voies de communication cruciales entre le littoral et les villes musulmanes de Hama et de Homs sur l’Oronte."
+                  },
+                  "credits": {
+                    "en": "Musée d'Orsay",
+                    "fr": "Musée d'Orsay"
+                  },
+                  "timing": 4,
+                  "vFOV": 25.4338,
+                  "position": {
+                    "x": 252069.68006128597,
+                    "y": 3849181.732701664,
+                    "z": 733.3992356628418
+                  },
+                  "quaternion": {
+                    "_x": 0.593193319772191,
+                    "_y": -0.29863806375842844,
+                    "_z": -0.346831753910959,
+                    "_w": 0.6623025945376566
+                  },
+                  "width": 2678,
+                  "height": 2000,
+                  "cx": 0.015412,
+                  "cy": -0.259468
+                },
+                {
+                  "id": "644108f0-fc7f-11e8-b0fa-1d88173a31f8",
+                  "file": "public/data/crac/img/001-03-01-02_03_small.jpg",
+                  "thumbnail": "public/data/crac/img/001-03-01-02_03_small_tn.jpg",
+                  "date": 1927,
+                  "period": "1927-1936",
+                  "title": {
+                    "en": "Castle seen from the southern front",
+                    "fr": "Château vu du front sud"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "D’abord nommé Hoṣn al-Safth (le « château de la Pente »), il prit le nom de Hosn al-Akrâd (le « château des Kurdes »), après qu’en 1031, l’émir de Homs y installa une garnison de Kurdes chargée de surveiller la route de Tripoli."
+                  },
+                  "credits": {
+                    "en": "INHA",
+                    "fr": "INHA"
+                  },
+                  "timing": 8,
+                  "vFOV": 29.1117,
+                  "position": {
+                    "x": 252323.846561286,
+                    "y": 3849164.508701664,
+                    "z": 713.3951356628418
+                  },
+                  "quaternion": {
+                    "_x": 0.6815177147351639,
+                    "_y": -0.0770079026484073,
+                    "_z": -0.08802098474022901,
+                    "_w": 0.722395801259402
+                  },
+                  "width": 2394,
+                  "height": 1537,
+                  "cx": 0.00405962,
+                  "cy": -0.144131
+                },
+                {
+                  "id": "4c137c10-fc87-11e8-be24-f3e304abf68a",
+                  "file": "public/data/crac/img/001-04-01-01_small.jpg",
+                  "thumbnail": "public/data/crac/img/001-04-01-01_small_tn.jpg",
+                  "date": 1927,
+                  "period": "1927-1928",
+                  "title": {
+                    "en": "Deschamps' work",
+                    "fr": "Les travaux de Deschamps"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Entre 1927 et 1928, Paul Deschamps, chartiste et conservateur du Musée de Sculpture comparée, mène plusieurs missions de terrain accompagné de François Anus, architecte au service des Antiquités, et du capitaine Frédéric Lamblin de la 39e compagnie d’aviation de l’armée française du Levant. L’année suivante, en 1929, Deschamps retourna au Crac en compagnie de François Anus, qui y entreprit des travaux de restauration à partir de 1930."
+                  },
+                  "credits": {
+                    "en": "INHA",
+                    "fr": "INHA"
+                  },
+                  "timing": 12,
+                  "vFOV": 34.0587,
+                  "position": {
+                    "x": 252331.584361286,
+                    "y": 3849481.557301664,
+                    "z": 701.5046356628418
+                  },
+                  "quaternion": {
+                    "_x": 0.570216076034262,
+                    "_y": -0.29384620274060314,
+                    "_z": -0.28136392496039786,
+                    "_w": 0.7136822664869128
+                  },
+                  "width": 3000,
+                  "height": 1988,
+                  "cx": -0.0153399,
+                  "cy": -0.104904
+                },
+                {
+                  "id": "2ccd6f60-050f-11e9-ac0f-5d615f1e56a1",
+                  "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Pilier-octogonal-de-la-tour-sud-ouest.jpg",
+                  "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Pilier-octogonal-de-la-tour-sud-ouest_tn.jpg",
+                  "date": 2010,
+                  "period": 2010,
+                  "title": {
+                    "en": "Octogonal pillar from the South-West tower",
+                    "fr": "Pilier octogonal"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Ce pilier de la tour sud-ouest porte l'inscription suivante: \"Gloire à notre maître le sultan al-Malik al-Zâhir et que soit augmentée l'existence de son enfant al-Malik al-Sa'îd, fils d'al-Malik al-Zâhir, le savant, le juste, le champion de la foi, Rukn al-dunyâ wa'l-Dîn Abû'I-Fath Baybars, l'émir des croyants !\""
+                  },
+                  "credits": {
+                    "en": "Equipe castellologie médiévale au Proche-Orient",
+                    "fr": "Equipe castellologie médiévale au Proche-Orient"
+                  },
+                  "timing": 16,
+                  "vFOV": 71.2403,
+                  "position": {
+                    "x": 252312.33367869415,
+                    "y": 3849341.8653658447,
+                    "z": 700.529900390625
+                  },
+                  "quaternion": {
+                    "_x": 0.24876946346119985,
+                    "_y": -0.7165821146563193,
+                    "_z": -0.6221424632025743,
+                    "_w": 0.19381068722889877
+                  },
+                  "width": 960,
+                  "height": 1280,
+                  "cx": -0.103202,
+                  "cy": -0.0249247
+                },
+                {
+                  "id": "3a5a4eb0-fdf2-11e8-b3b3-3def575c44db",
+                  "file": "public/data/crac/img/A049561.jpg",
+                  "thumbnail": "public/data/crac/img/A049561_tn.jpg",
+                  "date": 1926,
+                  "period": "1926",
+                  "title": {
+                    "en": "The inner court seen from the south",
+                    "fr": "La cour vue du sud"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Vue prise le 11 avril 1926 par Georges Chevalier dans le cadre du projet Archives de la Planète initié par Albert Kahn."
+                  },
+                  "credits": {
+                    "en": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine",
+                    "fr": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine"
+                  },
+                  "timing": 20,
+                  "vFOV": 32.7218,
+                  "position": {
+                    "x": 252394.73526128597,
+                    "y": 3849394.9773016637,
+                    "z": 719.9160356628418
+                  },
+                  "quaternion": {
+                    "_x": -0.5953641977860251,
+                    "_y": -0.049494468416360904,
+                    "_z": -0.05082301929170524,
+                    "_w": -0.8003179307630558
+                  },
+                  "width": 5581,
+                  "height": 4186,
+                  "cx": 0.0895683,
+                  "cy": -0.340683
+                },
+                {
+                  "id": "bd1cb3b0-fd61-11e8-9a5c-df5f123b674b",
+                  "file": "public/data/crac/img/A049556.jpg",
+                  "thumbnail": "public/data/crac/img/A049556_tn.jpg",
+                  "date": 1926,
+                  "period": "1926",
+                  "title": {
+                    "en": "The inner court seen from the north",
+                    "fr": "La cour vue du nord."
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Vue prise le 11 avril 1926 par Georges Chevalier dans le cadre du projet Archives de la Planète initié par Albert Kahn."
+                  },
+                  "credits": {
+                    "en": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine",
+                    "fr": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine"
+                  },
+                  "timing": 24,
+                  "vFOV": 30.0299,
+                  "position": {
+                    "x": 252387.68326128597,
+                    "y": 3849460.760651664,
+                    "z": 707.8053356628418
+                  },
+                  "quaternion": {
+                    "_x": 0.1925234942645739,
+                    "_y": -0.6728261612991812,
+                    "_z": -0.6833330422868977,
+                    "_w": 0.20807598166655317
+                  },
+                  "width": 5581,
+                  "height": 4186,
+                  "cx": -0.0126734,
+                  "cy": -0.163859
+                },
+                {
+                  "id": "fe64e4c0-fdf5-11e8-8b4b-7317cb915631",
+                  "file": "public/data/crac/img/09-508045.jpg",
+                  "thumbnail": "public/data/crac/img/09-508045_tn.jpg",
+                  "date": 1859,
+                  "period": "1859",
+                  "title": {
+                    "en": "Inside of the inner ward, outside the Hall of the Knights. 1859",
+                    "fr": "Intérieur de la deuxième enceinte"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Vue prise à l'extérieur de la salle des Chevaliers. 1859 prise par Louis de Clercq Louis (1837-1901)"
+                  },
+                  "credits": {
+                    "en": "Musée d'Orsay",
+                    "fr": "Musée d'Orsay"
+                  },
+                  "timing": 28,
+                  "vFOV": 33.6515,
+                  "position": {
+                    "x": 252400.81901869416,
+                    "y": 3849426.1271658447,
+                    "z": 712.593200390625
+                  },
+                  "quaternion": {
+                    "_x": -0.6479950296598384,
+                    "_y": -0.26552082427419915,
+                    "_z": -0.2674602125693079,
+                    "_w": -0.6618656722517612
+                  },
+                  "width": 5680,
+                  "height": 4360,
+                  "cx": 0.0823139,
+                  "cy": -0.0526202
+                },
+                {
+                  "id": "8c695a00-fe30-11e8-9934-57673ae0797f",
+                  "file": "public/data/crac/img/sap01_dch00223p_p.jpg",
+                  "thumbnail": "public/data/crac/img/sap01_dch00223p_p_tn.jpg",
+                  "date": 1927,
+                  "period": "1927-1936",
+                  "title": {
+                    "en": "The Great Gothic Hall",
+                    "fr": "La grand'salle gothique"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Salle construite vers le milieu du XIIIe siècle, lors de la dernière campagne de travaux du Crac, à l’intérieur du château haut, à proximité de la chapelle. Cette salle s’apparente aux grand’salles seigneuriales des châteaux d’Occident, mais dans le contexte du Crac elle se rapproche également des salles capitulaires des monastères. C’est là que se tenaient les conseils, le chapitre et que l’on donnait des réceptions."
+                  },
+                  "credits": {
+                    "en": "INHA",
+                    "fr": "INHA"
+                  },
+                  "timing": 32,
+                  "vFOV": 43.6697,
+                  "position": {
+                    "x": 252382.07596128597,
+                    "y": 3849430.505901664,
+                    "z": 707.8119356628417
+                  },
+                  "quaternion": {
+                    "_x": -0.7632266872179383,
+                    "_y": -0.01450613939606336,
+                    "_z": 0.008101821661347763,
+                    "_w": -0.6459171435439077
+                  },
+                  "width": 343,
+                  "height": 512,
+                  "cx": -0.0773378,
+                  "cy": -0.0480563
+                },
+                {
+                  "id": "ae9fab60-fd54-11e8-a3c5-315ff17b2404",
+                  "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9780.jpg",
+                  "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9780_tn.jpg",
+                  "date": 2004,
+                  "period": "2004-2008",
+                  "title": {
+                    "en": "Mamluk palace, entrance door",
+                    "fr": "Entrée du palais mamelouk"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Linteau gravé de motifs géométriques en étoiles surmonté d’une plate-bande avec des claveaux à crossettes. La richesse du décor, affichée dès l’entrée, peut être interprétée comme une volonté mamelouke de rivaliser avec les sculptures gothiques des croisés."
+                  },
+                  "credits": {
+                    "en": "Cyril Yovitchitch",
+                    "fr": "Cyril Yovitchitch"
+                  },
+                  "timing": 36,
+                  "vFOV": 65.5134,
+                  "position": {
+                    "x": 252379.526161286,
+                    "y": 3849427.463001664,
+                    "z": 714.7143356628418
+                  },
+                  "quaternion": {
+                    "_x": 0.7539791467171189,
+                    "_y": -0.08704362309370257,
+                    "_z": -0.07717220731723812,
+                    "_w": 0.6465162831764041
+                  },
+                  "width": 2592,
+                  "height": 3872,
+                  "cx": -0.01905,
+                  "cy": 0.0341608
+                },
+                {
+                  "id": "cbc48620-feda-11e8-9d86-8f3158628204",
+                  "file": "public/data/crac/img/09-508047.jpg",
+                  "thumbnail": "public/data/crac/img/09-508047_tn.jpg",
+                  "date": 1859,
+                  "period": "1859",
+                  "title": {
+                    "en": "Inner court of the Krak of the Knights",
+                    "fr": "Troisième enceinte"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Cette partie du bâtiment était aussi désignée comme \"refuge\"."
+                  },
+                  "credits": {
+                    "en": "Musée d'Orsay",
+                    "fr": "Musée d'Orsay"
+                  },
+                  "timing": 40,
+                  "vFOV": 26.7668,
+                  "position": {
+                    "x": 252410.77165869414,
+                    "y": 3849475.380565845,
+                    "z": 719.996900390625
+                  },
+                  "quaternion": {
+                    "_x": -0.0010363038774808438,
+                    "_y": -0.7189183418566822,
+                    "_z": -0.6950736939414628,
+                    "_w": -0.005282405406805437
+                  },
+                  "width": 5792,
+                  "height": 4408,
+                  "cx": 0.104991,
+                  "cy": 0.232927
+                },
+                {
+                  "id": "aff0e150-fd45-11e8-9832-d15906cd1757",
+                  "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9973.jpg",
+                  "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9973_tn.jpg",
+                  "date": 2004,
+                  "period": "2004-2008",
+                  "title": {
+                    "en": "Chapel transformed into a mosque",
+                    "fr": "Chapelle transformée en mosquée"
+                  },
+                  "description": {
+                    "en": "",
+                    "fr": "Regardez les deux éléments majeurs de l’architecture religieuse islamique aménagés dans l’ancienne chapelle : le minrab (chaire de prêche), au centre, et les mihrâbs (niches indiquant le sens de la prière), de chaque côté."
+                  },
+                  "credits": {
+                    "en": "Cyril Yovitchitch",
+                    "fr": "Cyril Yovitchitch"
+                  },
+                  "timing": 44,
+                  "vFOV": 46.6979,
+                  "position": {
+                    "x": 252395.530461286,
+                    "y": 3849480.849101664,
+                    "z": 706.6305356628418
+                  },
+                  "quaternion": {
+                    "_x": 0.20879491812561143,
+                    "_y": -0.7135057994127044,
+                    "_z": -0.6331464131609472,
+                    "_w": 0.21549889992940527
+                  },
+                  "width": 3872,
+                  "height": 2592,
+                  "cx": 0.019716,
+                  "cy": 0.00614697
+                }
+            ]
+        }
+    },
+    "archives": {
+      "medias": [
+        {
+            "id": "581beed0-fc7c-11e8-bc2f-651822913845",
+            "file": "public/data/crac/img/001-03-01-01_01_small.jpg",
+            "thumbnail": "public/data/crac/img/001-03-01-01_01_small_tn.jpg",
+            "date": 1927,
+            "period": "1927-1936",
+            "title": {
+              "en": "Aerial view of the Krak of the Knights",
+              "fr": "Vue aérienne oblique"
+            },
+            "description": {
+              "en": "",
+              "fr": "Joyau de l'architecture militaire des XIIe et XIIIe siècles, le Crac des Chevaliers (Qal'at al-Hosn) est la plus emblématique des forteresses construites par les croisés au Proche-Orient, par la qualité de sa construction et par son état de conservation exceptionnel."
+            },
+            "credits": {
+              "en": "INHA",
+              "fr": "INHA"
+            },
+            "timing": 0,
+            "vFOV": 30.1553,
+            "position": {
+              "x": 251736.92863269043,
+              "y": 3849496.55074624,
+              "z": 1102.3118833007811
+            },
+            "quaternion": {
+              "_x": 0.35770332242451136,
+              "_y": -0.3925729139568759,
+              "_z": -0.6223594331183707,
+              "_w": 0.5749813704481682
+            },
+            "width": 3000,
+            "height": 2280,
+            "cx": 0.0348967,
+            "cy": 0.208744
+        },
+        {
+          "id": "55eeecf0-fc8d-11e8-9e6d-69f75bb3ee44",
+          "file": "public/data/crac/img/09-504707.jpg",
+          "thumbnail": "public/data/crac/img/09-504707_tn.jpg",
+          "date": 1859,
+          "period": "1859",
+          "title": {
+            "en": "General view of the Krak of the Knights",
+            "fr": "L'une des plus anciennes photos du Crac"
+          },
+          "description": {
+            "en": "",
+            "fr": "Le Crac des Chevaliers domine la plaine fertile de la Boquée et commande deux voies de communication cruciales entre le littoral et les villes musulmanes de Hama et de Homs sur l’Oronte."
+          },
+          "credits": {
+            "en": "Musée d'Orsay",
+            "fr": "Musée d'Orsay"
+          },
+          "timing": 4,
+          "vFOV": 25.4338,
+          "position": {
+            "x": 252069.68006128597,
+            "y": 3849181.732701664,
+            "z": 733.3992356628418
+          },
+          "quaternion": {
+            "_x": 0.593193319772191,
+            "_y": -0.29863806375842844,
+            "_z": -0.346831753910959,
+            "_w": 0.6623025945376566
+          },
+          "width": 2678,
+          "height": 2000,
+          "cx": 0.015412,
+          "cy": -0.259468
+        },
+        {
+          "id": "644108f0-fc7f-11e8-b0fa-1d88173a31f8",
+          "file": "public/data/crac/img/001-03-01-02_03_small.jpg",
+          "thumbnail": "public/data/crac/img/001-03-01-02_03_small_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "Castle seen from the southern front",
+            "fr": "Château vu du front sud"
+          },
+          "description": {
+            "en": "",
+            "fr": "D’abord nommé Hoṣn al-Safth (le « château de la Pente »), il prit le nom de Hosn al-Akrâd (le « château des Kurdes »), après qu’en 1031, l’émir de Homs y installa une garnison de Kurdes chargée de surveiller la route de Tripoli."
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "timing": 8,
+          "vFOV": 29.1117,
+          "position": {
+            "x": 252323.846561286,
+            "y": 3849164.508701664,
+            "z": 713.3951356628418
+          },
+          "quaternion": {
+            "_x": 0.6815177147351639,
+            "_y": -0.0770079026484073,
+            "_z": -0.08802098474022901,
+            "_w": 0.722395801259402
+          },
+          "width": 2394,
+          "height": 1537,
+          "cx": 0.00405962,
+          "cy": -0.144131
+        },
+        {
+          "id": "4c137c10-fc87-11e8-be24-f3e304abf68a",
+          "file": "public/data/crac/img/001-04-01-01_small.jpg",
+          "thumbnail": "public/data/crac/img/001-04-01-01_small_tn.jpg",
+          "date": 1927,
+          "period": "1927-1928",
+          "title": {
+            "en": "Deschamps' work",
+            "fr": "Les travaux de Deschamps"
+          },
+          "description": {
+            "en": "",
+            "fr": "Entre 1927 et 1928, Paul Deschamps, chartiste et conservateur du Musée de Sculpture comparée, mène plusieurs missions de terrain accompagné de François Anus, architecte au service des Antiquités, et du capitaine Frédéric Lamblin de la 39e compagnie d’aviation de l’armée française du Levant. L’année suivante, en 1929, Deschamps retourna au Crac en compagnie de François Anus, qui y entreprit des travaux de restauration à partir de 1930."
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "timing": 12,
+          "vFOV": 34.0587,
+          "position": {
+            "x": 252331.584361286,
+            "y": 3849481.557301664,
+            "z": 701.5046356628418
+          },
+          "quaternion": {
+            "_x": 0.570216076034262,
+            "_y": -0.29384620274060314,
+            "_z": -0.28136392496039786,
+            "_w": 0.7136822664869128
+          },
+          "width": 3000,
+          "height": 1988,
+          "cx": -0.0153399,
+          "cy": -0.104904
+        },
+        {
+          "id": "2ccd6f60-050f-11e9-ac0f-5d615f1e56a1",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Pilier-octogonal-de-la-tour-sud-ouest.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Pilier-octogonal-de-la-tour-sud-ouest_tn.jpg",
+          "date": 2010,
+          "period": 2010,
+          "title": {
+            "en": "Octogonal pillar from the South-West tower",
+            "fr": "Pilier octogonal"
+          },
+          "description": {
+            "en": "",
+            "fr": "Ce pilier de la tour sud-ouest porte l'inscription suivante: \"Gloire à notre maître le sultan al-Malik al-Zâhir et que soit augmentée l'existence de son enfant al-Malik al-Sa'îd, fils d'al-Malik al-Zâhir, le savant, le juste, le champion de la foi, Rukn al-dunyâ wa'l-Dîn Abû'I-Fath Baybars, l'émir des croyants !\""
+          },
+          "credits": {
+            "en": "Equipe castellologie médiévale au Proche-Orient",
+            "fr": "Equipe castellologie médiévale au Proche-Orient"
+          },
+          "timing": 16,
+          "vFOV": 71.2403,
+          "position": {
+            "x": 252312.33367869415,
+            "y": 3849341.8653658447,
+            "z": 700.529900390625
+          },
+          "quaternion": {
+            "_x": 0.24876946346119985,
+            "_y": -0.7165821146563193,
+            "_z": -0.6221424632025743,
+            "_w": 0.19381068722889877
+          },
+          "width": 960,
+          "height": 1280,
+          "cx": -0.103202,
+          "cy": -0.0249247
+        },
+        {
+          "id": "3a5a4eb0-fdf2-11e8-b3b3-3def575c44db",
+          "file": "public/data/crac/img/A049561.jpg",
+          "thumbnail": "public/data/crac/img/A049561_tn.jpg",
+          "date": 1926,
+          "period": "1926",
+          "title": {
+            "en": "The inner court seen from the south",
+            "fr": "La cour vue du sud"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue prise le 11 avril 1926 par Georges Chevalier dans le cadre du projet Archives de la Planète initié par Albert Kahn."
+          },
+          "credits": {
+            "en": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine",
+            "fr": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine"
+          },
+          "timing": 20,
+          "vFOV": 32.7218,
+          "position": {
+            "x": 252394.73526128597,
+            "y": 3849394.9773016637,
+            "z": 719.9160356628418
+          },
+          "quaternion": {
+            "_x": -0.5953641977860251,
+            "_y": -0.049494468416360904,
+            "_z": -0.05082301929170524,
+            "_w": -0.8003179307630558
+          },
+          "width": 5581,
+          "height": 4186,
+          "cx": 0.0895683,
+          "cy": -0.340683
+        },
+        {
+          "id": "bd1cb3b0-fd61-11e8-9a5c-df5f123b674b",
+          "file": "public/data/crac/img/A049556.jpg",
+          "thumbnail": "public/data/crac/img/A049556_tn.jpg",
+          "date": 1926,
+          "period": "1926",
+          "title": {
+            "en": "The inner court seen from the north",
+            "fr": "La cour vue du nord."
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue prise le 11 avril 1926 par Georges Chevalier dans le cadre du projet Archives de la Planète initié par Albert Kahn."
+          },
+          "credits": {
+            "en": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine",
+            "fr": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine"
+          },
+          "timing": 24,
+          "vFOV": 30.0299,
+          "position": {
+            "x": 252387.68326128597,
+            "y": 3849460.760651664,
+            "z": 707.8053356628418
+          },
+          "quaternion": {
+            "_x": 0.1925234942645739,
+            "_y": -0.6728261612991812,
+            "_z": -0.6833330422868977,
+            "_w": 0.20807598166655317
+          },
+          "width": 5581,
+          "height": 4186,
+          "cx": -0.0126734,
+          "cy": -0.163859
+        },
+        {
+          "id": "fe64e4c0-fdf5-11e8-8b4b-7317cb915631",
+          "file": "public/data/crac/img/09-508045.jpg",
+          "thumbnail": "public/data/crac/img/09-508045_tn.jpg",
+          "date": 1859,
+          "period": "1859",
+          "title": {
+            "en": "Inside of the inner ward, outside the Hall of the Knights. 1859",
+            "fr": "Intérieur de la deuxième enceinte"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue prise à l'extérieur de la salle des Chevaliers. 1859 prise par Louis de Clercq Louis (1837-1901)"
+          },
+          "credits": {
+            "en": "Musée d'Orsay",
+            "fr": "Musée d'Orsay"
+          },
+          "timing": 28,
+          "vFOV": 33.6515,
+          "position": {
+            "x": 252400.81901869416,
+            "y": 3849426.1271658447,
+            "z": 712.593200390625
+          },
+          "quaternion": {
+            "_x": -0.6479950296598384,
+            "_y": -0.26552082427419915,
+            "_z": -0.2674602125693079,
+            "_w": -0.6618656722517612
+          },
+          "width": 5680,
+          "height": 4360,
+          "cx": 0.0823139,
+          "cy": -0.0526202
+        },
+        {
+          "id": "8c695a00-fe30-11e8-9934-57673ae0797f",
+          "file": "public/data/crac/img/sap01_dch00223p_p.jpg",
+          "thumbnail": "public/data/crac/img/sap01_dch00223p_p_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "The Great Gothic Hall",
+            "fr": "La grand'salle gothique"
+          },
+          "description": {
+            "en": "",
+            "fr": "Salle construite vers le milieu du XIIIe siècle, lors de la dernière campagne de travaux du Crac, à l’intérieur du château haut, à proximité de la chapelle. Cette salle s’apparente aux grand’salles seigneuriales des châteaux d’Occident, mais dans le contexte du Crac elle se rapproche également des salles capitulaires des monastères. C’est là que se tenaient les conseils, le chapitre et que l’on donnait des réceptions."
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "timing": 32,
+          "vFOV": 43.6697,
+          "position": {
+            "x": 252382.07596128597,
+            "y": 3849430.505901664,
+            "z": 707.8119356628417
+          },
+          "quaternion": {
+            "_x": -0.7632266872179383,
+            "_y": -0.01450613939606336,
+            "_z": 0.008101821661347763,
+            "_w": -0.6459171435439077
+          },
+          "width": 343,
+          "height": 512,
+          "cx": -0.0773378,
+          "cy": -0.0480563
+        },
+        {
+          "id": "ae9fab60-fd54-11e8-a3c5-315ff17b2404",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9780.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9780_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "Mamluk palace, entrance door",
+            "fr": "Porte d'entrée du palais mamelouk"
+          },
+          "description": {
+            "en": "",
+            "fr": "Linteau gravé de motifs géométriques en étoiles surmonté d’une plate-bande avec des claveaux à crossettes. La richesse du décor, affichée dès l’entrée, peut être interprétée comme une volonté mamelouke de rivaliser avec les sculptures gothiques des croisés."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "timing": 36,
+          "vFOV": 65.5134,
+          "position": {
+            "x": 252379.526161286,
+            "y": 3849427.463001664,
+            "z": 714.7143356628418
+          },
+          "quaternion": {
+            "_x": 0.7539791467171189,
+            "_y": -0.08704362309370257,
+            "_z": -0.07717220731723812,
+            "_w": 0.6465162831764041
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.01905,
+          "cy": 0.0341608
+        },
+        {
+          "id": "cbc48620-feda-11e8-9d86-8f3158628204",
+          "file": "public/data/crac/img/09-508047.jpg",
+          "thumbnail": "public/data/crac/img/09-508047_tn.jpg",
+          "date": 1859,
+          "period": "1859",
+          "title": {
+            "en": "Inner court of the Krak of the Knights",
+            "fr": "Troisième enceinte"
+          },
+          "description": {
+            "en": "",
+            "fr": "Cette partie du bâtiment était aussi désignée comme \"refuge\"."
+          },
+          "credits": {
+            "en": "Musée d'Orsay",
+            "fr": "Musée d'Orsay"
+          },
+          "timing": 40,
+          "vFOV": 26.7668,
+          "position": {
+            "x": 252410.77165869414,
+            "y": 3849475.380565845,
+            "z": 719.996900390625
+          },
+          "quaternion": {
+            "_x": -0.0010363038774808438,
+            "_y": -0.7189183418566822,
+            "_z": -0.6950736939414628,
+            "_w": -0.005282405406805437
+          },
+          "width": 5792,
+          "height": 4408,
+          "cx": 0.104991,
+          "cy": 0.232927
+        },
+        {
+          "id": "aff0e150-fd45-11e8-9832-d15906cd1757",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9973.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9973_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "Chapel transformed into a mosque",
+            "fr": "Chapelle transformée en mosquée"
+          },
+          "description": {
+            "en": "",
+            "fr": "Regardez les deux éléments majeurs de l’architecture religieuse islamique aménagés dans l’ancienne chapelle : le minrab (chaire de prêche), au centre, et les mihrâbs (niches indiquant le sens de la prière), de chaque côté."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "timing": 44,
+          "vFOV": 46.6979,
+          "position": {
+            "x": 252395.530461286,
+            "y": 3849480.849101664,
+            "z": 706.6305356628418
+          },
+          "quaternion": {
+            "_x": 0.20879491812561143,
+            "_y": -0.7135057994127044,
+            "_z": -0.6331464131609472,
+            "_w": 0.21549889992940527
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.019716,
+          "cy": 0.00614697
+        },
+        {
+          "id": "1cc43660-fc7e-11e8-836a-979c9316257e",
+          "file": "public/data/crac/img/001-03-01-02_02_small.jpg",
+          "thumbnail": "public/data/crac/img/001-03-01-02_02_small_tn.jpg",
+          "date": 1927,
+          "vFOV": 57.9513,
+          "period": "1927-1936",
+          "title": {
+            "en": "General view of the Krak of the Knights",
+            "fr": "Vue générale du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "position": {
+            "x": 252376.55274269043,
+            "y": 3849215.54614624,
+            "z": 706.4471833007813
+          },
+          "quaternion": {
+            "_x": 0.7040732376759036,
+            "_y": 0.0002754099109773837,
+            "_z": -0.014947231811629984,
+            "_w": 0.709969985562151
+          },
+          "width": 3000,
+          "height": 2127,
+          "cx": -0.0300813,
+          "cy": -0.0205898
+        },
+        {
+          "id": "d915ad10-fc80-11e8-b8d4-813a2b42a94a",
+          "file": "public/data/crac/img/001-03-01-02_06_small.jpg",
+          "thumbnail": "public/data/crac/img/001-03-01-02_06_small_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "General view of the Krak of the Knights",
+            "fr": "Vue générale du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "vFOV": 29.5565,
+          "position": {
+            "x": 252057.71863269043,
+            "y": 3849241.5641462402,
+            "z": 721.5826833007812
+          },
+          "quaternion": {
+            "_x": 0.5636301548190171,
+            "_y": -0.34689937882628824,
+            "_z": -0.3917076865232797,
+            "_w": 0.6391767813893167
+          },
+          "width": 3000,
+          "height": 2070,
+          "cx": -0.0181357,
+          "cy": -0.133943
+        },
+        {
+          "id": "80326be0-fc88-11e8-9bb5-b50d4d6b9f2d",
+          "file": "public/data/crac/img/001-04-01-04_1_P1_small.jpg",
+          "thumbnail": "public/data/crac/img/001-04-01-04_1_P1_small_tn.jpg",
+          "date": 1927,
+          "period": "1927-1928",
+          "title": {
+            "en": "Fouille Deschamps",
+            "fr": "Fouille Deschamps"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "vFOV": 45.5939,
+          "position": {
+            "x": 252412.80793269043,
+            "y": 3849321.19984624,
+            "z": 704.4611833007813
+          },
+          "quaternion": {
+            "_x": 0.4071569076442599,
+            "_y": -0.15542905925501366,
+            "_z": -0.39869772161189293,
+            "_w": 0.8069108915352119
+          },
+          "width": 3000,
+          "height": 2086,
+          "cx": 0.00643269,
+          "cy": -0.173511
+        },
+        {
+          "id": "dd2e1a80-fc8b-11e8-a23d-af505c942f98",
+          "file": "public/data/crac/img/001-04-02-AlbumIII_P2.jpg",
+          "thumbnail": "public/data/crac/img/001-04-02-AlbumIII_P2_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "General view of the Krak of the Knights",
+            "fr": "Vue générale du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "vFOV": 43.567,
+          "position": {
+            "x": 252209.03263269042,
+            "y": 3849131.97214624,
+            "z": 722.6205833007813
+          },
+          "quaternion": {
+            "_x": 0.5919846913030179,
+            "_y": -0.15951982354777455,
+            "_z": -0.18756586919179052,
+            "_w": 0.767415530122036
+          },
+          "width": 5685,
+          "height": 4090,
+          "cx": -0.0448571,
+          "cy": -0.161546
+        },
+        {
+          "id": "4a9a07c0-ff82-11e8-9be7-e3322a380215",
+          "file": "public/data/crac/img/09-504716.jpg",
+          "thumbnail": "public/data/crac/img/09-504716_tn.jpg",
+          "date": 1859,
+          "period": "1859",
+          "title": {
+            "en": "Northern view of the outer wall",
+            "fr": "Première enceinte du Crac des Chevaliers, parois, intérieur nord"
+          },
+          "description": {
+            "en": "",
+            "fr": "Tour circulaire nord sur laquelle fut construite ce qui pourrait avoir été un moulin. Épreuve sur papier salé de Louis de Clercq (1837-1901). Musée d'Orsay (PHO1986-133-2-26). Cette photographie de Louis de Clercq garde le souvenir de la tour dite « du moulin » bâtie sur la tourelle circulaire la plus au nord de la seconde enceinte. Le moulin est aussi restitué par le baron Rey sur une vue cavalière du château."
+          },
+          "credits": {
+            "en": "Musée d'Orsay",
+            "fr": "Musée d'Orsay"
+          },
+          "vFOV": 87.5152,
+          "position": {
+            "x": 252349.04170128598,
+            "y": 3849515.190501664,
+            "z": 701.4301356628417
+          },
+          "quaternion": {
+            "_x": 0.5523070728553086,
+            "_y": -0.05885799547652934,
+            "_z": -0.1326852766693179,
+            "_w": 0.8209063594574427
+          },
+          "width": 5808,
+          "height": 4392,
+          "cx": 0.386142,
+          "cy": -0.268665
+        },
+        {
+          "id": "d01ca9c0-fee7-11e8-b521-b5b919ac592b",
+          "file": "public/data/crac/img/09-508040.jpg",
+          "thumbnail": "public/data/crac/img/09-508040_tn.jpg",
+          "date": 1859,
+          "period": "1859",
+          "title": {
+            "en": "Western view of the inner wall of the Krak of the Knights",
+            "fr": "Deuxième enceinte du Crac des Chevaliers, extérieur ouest."
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Musée d'Orsay",
+            "fr": "Musée d'Orsay"
+          },
+          "vFOV": 33.8262,
+          "position": {
+            "x": 252315.40006128597,
+            "y": 3849394.197501664,
+            "z": 708.9096356628418
+          },
+          "quaternion": {
+            "_x": 0.6793340293233521,
+            "_y": -0.2868581675107239,
+            "_z": -0.24957800983961675,
+            "_w": 0.6276372243104965
+          },
+          "width": 5556,
+          "height": 4296,
+          "cx": -0.101891,
+          "cy": -0.0276383
+        },
+        {
+          "id": "82d50230-fc93-11e8-9181-b9275d48656d",
+          "file": "public/data/crac/img/09-508041.jpg",
+          "thumbnail": "public/data/crac/img/09-508041_tn.jpg",
+          "date": 1859,
+          "period": "1859",
+          "title": {
+            "en": "Inner wall of the Krak of the Knights, outside north-west",
+            "fr": "Deuxième enceinte du Crac des Chevaliers, extérieur nord-ouest"
+          },
+          "description": {
+            "en": "",
+            "fr": "Kalaat-El-Hosn - Deuxième enceinte, extérieur nord-ouest. Épreuve sur papier salé à partir d'un négatif papier de Louis de Clercq Louis (1837-1901). Musée d'Orsay (09-508041)"
+          },
+          "credits": {
+            "en": "Musée d'Orsay",
+            "fr": "Musée d'Orsay"
+          },
+          "vFOV": 41.7411,
+          "position": {
+            "x": 252332.99973269043,
+            "y": 3849505.0078462404,
+            "z": 703.6854833007812
+          },
+          "quaternion": {
+            "_x": 0.467219669096048,
+            "_y": -0.6594518505295386,
+            "_z": -0.4641128333805366,
+            "_w": 0.36253043394236106
+          },
+          "width": 4200,
+          "height": 5504,
+          "cx": -0.0169463,
+          "cy": -0.0270353
+        },
+        {
+          "id": "f5a989e0-fdef-11e8-ad9c-1151bcaa27c6",
+          "file": "public/data/crac/img/A049555.jpg",
+          "thumbnail": "public/data/crac/img/A049555_tn.jpg",
+          "date": 1926,
+          "period": "1926",
+          "title": {
+            "en": "Facade of the Hall of the Knights",
+            "fr": "Façade de la galerie précédant la grand'salle"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine",
+            "fr": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine"
+          },
+          "vFOV": 30.5564,
+          "position": {
+            "x": 252402.87598479004,
+            "y": 3849424.4858730407,
+            "z": 712.5771354492188
+          },
+          "quaternion": {
+            "_x": -0.6815929415653701,
+            "_y": -0.23173235422026345,
+            "_z": -0.2198099974476919,
+            "_w": -0.658342420809905
+          },
+          "width": 5581,
+          "height": 4186,
+          "cx": 0.0351103,
+          "cy": 0.0996544
+        },
+        {
+          "id": "a4e17cd0-feca-11e8-a266-4b53963586ed",
+          "file": "public/data/crac/img/a049568.jpg",
+          "thumbnail": "public/data/crac/img/a049568_tn.jpg",
+          "date": 1926,
+          "period": "1926",
+          "title": {
+            "en": "Gate of the Krak of the Knights",
+            "fr": "Une porte de la forteresse"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine",
+            "fr": "Collection Archives de la Planète - Musée Albert-Kahn/Département des Hauts-de-Seine"
+          },
+          "vFOV": 45.3856,
+          "position": {
+            "x": 252464.15306128596,
+            "y": 3849468.297801664,
+            "z": 680.9124356628417
+          },
+          "quaternion": {
+            "_x": -0.38007013435680953,
+            "_y": -0.6698670815964527,
+            "_z": -0.5543671383699907,
+            "_w": -0.3154391571427294
+          },
+          "width": 593,
+          "height": 800,
+          "cx": 0.0178645,
+          "cy": 0.309067
+        },
+        {
+          "id": "adc3f120-fdf3-11e8-8880-fd1c37369a7a",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Portique XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Portique de la grand'salle gothique"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 87.3758,
+          "position": {
+            "x": 252383.83287869414,
+            "y": 3849449.870825845,
+            "z": 707.4319003906251
+          },
+          "quaternion": {
+            "_x": -0.09275145275063557,
+            "_y": -0.8072519006766815,
+            "_z": -0.577370779378452,
+            "_w": -0.07990319134083816
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.00971324,
+          "cy": 0.00600643
+        },
+        {
+          "id": "8137be30-fc99-11e8-8dd8-47a755ec9246",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(4).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(4)_tn.jpg",
+          "date": 2004,
+          "period": "2004_2008",
+          "title": {
+            "en": "",
+            "fr": "La chapelle du Crac"
+          },
+          "description": {
+            "en": "",
+            "fr": "Chevet de la chapelle du XIIe siècle."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 52.9104,
+          "position": {
+            "x": 252441.22833269043,
+            "y": 3849492.3099462404,
+            "z": 693.6891833007812
+          },
+          "quaternion": {
+            "_x": -0.4940870865023032,
+            "_y": -0.6784096953039885,
+            "_z": -0.4386578625051141,
+            "_w": -0.3212748292843049
+          },
+          "width": 2589,
+          "height": 3872,
+          "cx": 0.0102469,
+          "cy": 0.0108286
+        },
+        {
+          "id": "6faa51a0-689c-11e8-96de-f3355be07427",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(13).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(13)_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Grand'salle mi-XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue de l'intérieur de la salle en direction du sud. La grand’salle (27 m x 7,5 m) est composée de trois travées voûtées d’ogives. Tout comme le portique qui la précède à l’est, son style emprunte au gothique rayonnant d’Île-de-France, notamment les motifs floraux rappelant la Saint-Chapelle à Paris"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 78.8403,
+          "position": {
+            "x": 252377.22546128597,
+            "y": 3849457.778341664,
+            "z": 707.0274356628418
+          },
+          "quaternion": {
+            "_x": -0.06635800826898877,
+            "_y": -0.8410946629887415,
+            "_z": -0.532274507079113,
+            "_w": -0.06957177404749289
+          },
+          "width": 803,
+          "height": 1200,
+          "cx": 0.0101888,
+          "cy": 0.0272377
+        },
+        {
+          "id": "22fad260-fd59-11e8-ba91-0d96696cbd1a",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(4)_1.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(4)_1_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Donjon fin XIIe - début XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Le donjon n'est pas une tour mais l'ensemble des bâtiments qui symbolisaient le pouvoir seigneurial. Ici les trois tours du front sud et les bâtiments adossés."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 64.1911,
+          "position": {
+            "x": 252340.12257869416,
+            "y": 3849332.1773658446,
+            "z": 708.530400390625
+          },
+          "quaternion": {
+            "_x": 0.7235041701197089,
+            "_y": -0.1762940649734598,
+            "_z": -0.17398075538547467,
+            "_w": 0.6443545725996087
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": -0.00603176,
+          "cy": 0.000144007
+        },
+        {
+          "id": "ed9614d0-fc96-11e8-8734-af51b94b290d",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(15).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(15)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Le premier château hospitalier"
+          },
+          "description": {
+            "en": "",
+            "fr": "Bloc de quatre latrines dans la partie nord-ouest de la grande galerie."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 71.8318,
+          "position": {
+            "x": 252370.05033269044,
+            "y": 3849478.36524624,
+            "z": 706.8029833007813
+          },
+          "quaternion": {
+            "_x": -0.655118931222381,
+            "_y": -0.40233513606320975,
+            "_z": -0.31575079719411875,
+            "_w": -0.556099863616529
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": -0.011914,
+          "cy": 0.0155172
+        },
+        {
+          "id": "adc62fd0-fc9a-11e8-9142-7f2246c1e46e",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(21).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(21)_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "L'enceinte extérieure mi-XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "L'enceinte extérieure mi-XIIIe siècle"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 64.3998,
+          "position": {
+            "x": 252283.67463269044,
+            "y": 3849390.95044624,
+            "z": 690.0126833007812
+          },
+          "quaternion": {
+            "_x": 0.47997794142696276,
+            "_y": -0.6617951915755744,
+            "_z": -0.4691888220950779,
+            "_w": 0.3339313542811112
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": -0.0196678,
+          "cy": 0.0173121
+        },
+        {
+          "id": "df616310-fd2c-11e8-9728-bb4bf7816d87",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(26).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(26)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour sud-ouest de Baybars"
+          },
+          "description": {
+            "en": "",
+            "fr": "Tour construite par Baybars après le siège victorieux de 1271."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 55.094,
+          "position": {
+            "x": 252289.04523269043,
+            "y": 3849294.63114624,
+            "z": 696.2293833007813
+          },
+          "quaternion": {
+            "_x": 0.706126385308566,
+            "_y": -0.20789759921461842,
+            "_z": -0.18297590156976998,
+            "_w": 0.651677785148908
+          },
+          "width": 2589,
+          "height": 3872,
+          "cx": -0.0254276,
+          "cy": -0.0242744
+        },
+        {
+          "id": "723e5750-680a-11e8-98da-0749fbf074e7",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(27).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(27)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour sud de Qalâwûn"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue sud-est de la tour construite par le sultan Qalâwûn sur le front sud du château en 1285. Au premier plan, l'aqueduc mamelouk qui apporte l'eau dans le grand réservoir (birqeh)."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 38.1763,
+          "position": {
+            "x": 252290.19983269044,
+            "y": 3849294.6551462403,
+            "z": 696.2706833007812
+          },
+          "quaternion": {
+            "_x": 0.577609799164102,
+            "_y": -0.42482135537613164,
+            "_z": -0.41410559860113666,
+            "_w": 0.5607230057106507
+          },
+          "width": 1600,
+          "height": 1071,
+          "cx": -0.0310418,
+          "cy": -0.104992
+        },
+        {
+          "id": "daef6660-fc91-11e8-90ec-33e0313a239d",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(36).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(36)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Le premier château hospitalier"
+          },
+          "description": {
+            "en": "",
+            "fr": "Tour des latrines au nord-ouest de la première enceinte."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 85.9392,
+          "position": {
+            "x": 252346.15483269043,
+            "y": 3849514.44714624,
+            "z": 702.1298833007812
+          },
+          "quaternion": {
+            "_x": 0.26184646986330856,
+            "_y": -0.7024347088668839,
+            "_z": -0.620796198117716,
+            "_w": 0.2294209807358715
+          },
+          "width": 2589,
+          "height": 3872,
+          "cx": -0.0313629,
+          "cy": 0.00993067
+        },
+        {
+          "id": "8b947460-fc9c-11e8-b4d9-5553253ecf94",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(37).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(37)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour sud de Qalâwûn"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue de la tour construite par le sultan Qalâwûn sur le front sud du château en 1285."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 85.6883,
+          "position": {
+            "x": 252348.56503269044,
+            "y": 3849289.3141462402,
+            "z": 704.2401833007813
+          },
+          "quaternion": {
+            "_x": 0.7114394903275439,
+            "_y": -0.05201643521605851,
+            "_z": -0.07645522568189561,
+            "_w": 0.6966367349887808
+          },
+          "width": 2008,
+          "height": 3000,
+          "cx": 0.00616628,
+          "cy": -0.0115344
+        },
+        {
+          "id": "8880d8e0-6809-11e8-98da-0749fbf074e7",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(38).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(38)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Donjon fin XIIe - début XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue depuis le sud-ouest du donjon et de son grand glacis."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 64.2084,
+          "position": {
+            "x": 252305.61683269043,
+            "y": 3849353.5742462403,
+            "z": 710.4296833007812
+          },
+          "quaternion": {
+            "_x": 0.6225211839644035,
+            "_y": -0.34810597935679405,
+            "_z": -0.3561367617920743,
+            "_w": 0.603702086754601
+          },
+          "width": 1600,
+          "height": 1071,
+          "cx": -0.00144484,
+          "cy": 0.0127638
+        },
+        {
+          "id": "1d893a70-fef7-11e8-a2bb-3d2717d23e2b",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(51).jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-(51)_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour sud de Qalâwûn"
+          },
+          "description": {
+            "en": "",
+            "fr": "Détail de l'inscription de la tour construite pas le sultan Qalâwûn sur le front sud du château en 1285."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 98.0777,
+          "position": {
+            "x": 252350.36947869416,
+            "y": 3849303.0783658447,
+            "z": 709.970200390625
+          },
+          "quaternion": {
+            "_x": 0.7508413764864986,
+            "_y": -0.06586234251161723,
+            "_z": -0.05578549932143556,
+            "_w": 0.6548185682005364
+          },
+          "width": 3586,
+          "height": 2400,
+          "cx": 0.0699821,
+          "cy": -0.139101
+        },
+        {
+          "id": "cfd0b960-fef7-11e8-91e3-1f96e13a9681",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Baie-ornée1.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Baie-ornée1_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Baie mamelouke ornée"
+          },
+          "description": {
+            "en": "",
+            "fr": "Baie de la courtine sud-ouest ornée d'un cadre décoré d'un motif géométrique."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 70.6165,
+          "position": {
+            "x": 252312.63657869416,
+            "y": 3849367.0076658446,
+            "z": 701.357200390625
+          },
+          "quaternion": {
+            "_x": -0.571802384087065,
+            "_y": -0.472041251662583,
+            "_z": -0.41446155948157165,
+            "_w": -0.5276748108383366
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": 0.163862,
+          "cy": -0.107302
+        },
+        {
+          "id": "79e915c0-fe1f-11e8-895a-79412d6cf460",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Baie-ornée2.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Baie-ornée2_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Baie mamelouke ornée"
+          },
+          "description": {
+            "en": "",
+            "fr": "Baie de la courtine sud-ouest ornée d'un cadre décoré d'un motif géométrique."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 39.0847,
+          "position": {
+            "x": 252321.94436128598,
+            "y": 3849384.226901664,
+            "z": 701.9307356628418
+          },
+          "quaternion": {
+            "_x": -0.6107098702104246,
+            "_y": -0.4705941939279824,
+            "_z": -0.3692337863720861,
+            "_w": -0.51888435134447
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": 0.195832,
+          "cy": 0.238087
+        },
+        {
+          "id": "ca4f06c0-fe22-11e8-ae84-3dc6ed2c17c5",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Vue-aérienne_Front-nord-est.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Vue-aérienne_Front-nord-est_tn.jpg",
+          "date": 2009,
+          "period": "2009",
+          "title": {
+            "en": "Aerial view from the North-East of the Krak of the Knights",
+            "fr": "Vue aérienne du front nord-est du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Equipe castellologie médiévale au Proche-Orient",
+            "fr": "Equipe castellologie médiévale au Proche-Orient"
+          },
+          "vFOV": 48.2557,
+          "position": {
+            "x": 252295.840461286,
+            "y": 3849609.511701664,
+            "z": 792.9828356628418
+          },
+          "quaternion": {
+            "_x": 0.11151517382228451,
+            "_y": -0.46962778944904926,
+            "_z": -0.8446591152479741,
+            "_w": 0.23144131958899414
+          },
+          "width": 3000,
+          "height": 2008,
+          "cx": -0.00686058,
+          "cy": -0.0632582
+        },
+        {
+          "id": "88e2de40-fe23-11e8-875b-11ed96f743bc",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Vue-aérienne_Front-nord-ouest.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_-Vue-aérienne_Front-nord-ouest_tn.jpg",
+          "date": 2009,
+          "period": "2009",
+          "title": {
+            "en": "Aerial view from the North-West of the Krak of the Knights",
+            "fr": "Vue aérienne du front nord-ouest du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Equipe castellologie médiévale au Proche-Orient",
+            "fr": "Equipe castellologie médiévale au Proche-Orient"
+          },
+          "vFOV": 44.3577,
+          "position": {
+            "x": 252497.29338479004,
+            "y": 3849633.9892730406,
+            "z": 792.1118354492187
+          },
+          "quaternion": {
+            "_x": -0.13791231700098378,
+            "_y": -0.5339328940800779,
+            "_z": -0.8095943900368886,
+            "_w": -0.20112876735934793
+          },
+          "width": 3000,
+          "height": 2008,
+          "cx": 0.00737797,
+          "cy": 0.053838
+        },
+        {
+          "id": "b3c36290-fd44-11e8-baa1-71f2ec375c07",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour-porte orientale"
+          },
+          "description": {
+            "en": "",
+            "fr": "Entrée principale actuelle du château. Cette tour est un aménagement du Crac daté du tout début du XIVe siècle et constitue aujourd’hui l’entrée principale du château. On y lit plusieurs inscriptions, dont une qui fait mention de la date de construction (1301-1302)."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 88.7483,
+          "position": {
+            "x": 252465.61283269044,
+            "y": 3849462.17584624,
+            "z": 677.8804833007813
+          },
+          "quaternion": {
+            "_x": -0.5811278073199161,
+            "_y": -0.591764344800818,
+            "_z": -0.38124375238303654,
+            "_w": -0.40836091028758736
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.0208277,
+          "cy": 0.00921131
+        },
+        {
+          "id": "b3b011a0-fc94-11e8-a5c9-b5cd1419b956",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC0035.NEF_C.-YOVITCHITCH-2010.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC0035_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Tour des latrines. Vue nord"
+          },
+          "description": {
+            "en": "",
+            "fr": "Cette tour présente à sa base un glacis d'où partent trois grands arcs brisés dans lesquels de déversaient les douze latrines de l'étage."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 87.2324,
+          "position": {
+            "x": 252393.27026128597,
+            "y": 3849513.6895016637,
+            "z": 694.7849756628418
+          },
+          "quaternion": {
+            "_x": -0.3719619025441419,
+            "_y": -0.7056017832265664,
+            "_z": -0.5221975637487033,
+            "_w": -0.3017949154279291
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": 0.000447189,
+          "cy": 0.00208954
+        },
+        {
+          "id": "69588f60-fe15-11e8-b732-8bb5060d292b",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC0048.NEF_C.-YOVITCHITCH-2010.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC0048_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Tour du châtelain"
+          },
+          "description": {
+            "en": "",
+            "fr": "Détail de la baie orientale ornée."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 33.6515,
+          "position": {
+            "x": 252369.56116128596,
+            "y": 3849368.0741016637,
+            "z": 723.1456356628418
+          },
+          "quaternion": {
+            "_x": -0.6463484656064309,
+            "_y": -0.34393937022008786,
+            "_z": -0.29466084887761507,
+            "_w": -0.6140963725341041
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -1.11105,
+          "cy": -0.1614
+        },
+        {
+          "id": "9ddf5920-fc9f-11e8-aa1b-1723fcf9e798",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC0095.NEF_C.-YOVITCHITCH-2010.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC0095_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Courtine occidentale"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 52.2921,
+          "position": {
+            "x": 252272.50576128598,
+            "y": 3849348.409701664,
+            "z": 691.8169156628418
+          },
+          "quaternion": {
+            "_x": 0.7179597351427579,
+            "_y": -0.31058847816556706,
+            "_z": -0.2838977425525131,
+            "_w": 0.5545003946960947
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.00663491,
+          "cy": 0.00201038
+        },
+        {
+          "id": "0c5ccbc0-fef9-11e8-a1a7-fb4008beb1a1",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9715.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9715_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Tour-porte du XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Tour-porte située à la jonction des accès sud et nord-est. Elle est protégée à l'ouest par des vantaux précédés par une herse et un assommoir."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 50.1354,
+          "position": {
+            "x": 252414.63464869416,
+            "y": 3849323.187365845,
+            "z": 700.607300390625
+          },
+          "quaternion": {
+            "_x": 0.7454627933335413,
+            "_y": -0.04501951092174626,
+            "_z": -0.04629825761128212,
+            "_w": 0.6634115907442983
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.03065,
+          "cy": -0.0461446
+        },
+        {
+          "id": "05a3ef40-fc90-11e8-9dc5-51bf332b6f93",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9726.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9726_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Donjon. Tour sud-est"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 46.8689,
+          "position": {
+            "x": 252451.76363269042,
+            "y": 3849378.9950462403,
+            "z": 697.8412833007812
+          },
+          "quaternion": {
+            "_x": -0.657606193775609,
+            "_y": -0.555538615877545,
+            "_z": -0.3136872621872853,
+            "_w": -0.40066350185444016
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.00943861,
+          "cy": 0.00361417
+        },
+        {
+          "id": "7962b8c0-fca0-11e8-8d48-4d27e2f47022",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9778.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9778_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Palais mamelouk. Porte d'entrée"
+          },
+          "description": {
+            "en": "",
+            "fr": "Niche latérale est surmontée d'un motif en trilobe."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 64.1985,
+          "position": {
+            "x": 252378.82320269043,
+            "y": 3849429.3867462403,
+            "z": 715.2278833007813
+          },
+          "quaternion": {
+            "_x": 0.5342292573322595,
+            "_y": -0.4767894810752348,
+            "_z": -0.4464364871573596,
+            "_w": 0.5366240343861125
+          },
+          "width": 2591,
+          "height": 3872,
+          "cx": 0.0128595,
+          "cy": 0.0373413
+        },
+        {
+          "id": "00bebe10-fd58-11e8-8072-ffb570885db6",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9799.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9799_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Front ouest du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue des lices en direction du sud"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 46.8029,
+          "position": {
+            "x": 252330.613761286,
+            "y": 3849503.3526016637,
+            "z": 702.8571356628418
+          },
+          "quaternion": {
+            "_x": 0.08688022492721037,
+            "_y": -0.680966471516715,
+            "_z": -0.7228128025457264,
+            "_w": 0.07923473772699272
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.00859372,
+          "cy": -0.0519807
+        },
+        {
+          "id": "1355b510-fd5d-11e8-9ef0-01d93d586a6f",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9834.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9834_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Les lices ouest, mi-XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Les lices datent de la dernière campagne de construction du château croisé, au milieu du XIIIe siècle."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 46.3513,
+          "position": {
+            "x": 252330.301861286,
+            "y": 3849344.443701664,
+            "z": 708.6808356628418
+          },
+          "quaternion": {
+            "_x": -0.6810834950424467,
+            "_y": -0.03596540558425732,
+            "_z": -0.024069129337085257,
+            "_w": -0.7309257413683553
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.0131678,
+          "cy": 0.0666064
+        },
+        {
+          "id": "2b3ebab0-fd5c-11e8-b487-23bf9e6811ab",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9938.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9938_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Le Crac des Chevaliers (détail de l'enceinte)"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 54.3916,
+          "position": {
+            "x": 252478.83527869414,
+            "y": 3849462.4311658447,
+            "z": 672.335700390625
+          },
+          "quaternion": {
+            "_x": -0.2075586798290858,
+            "_y": -0.779846621829721,
+            "_z": -0.5787059299499285,
+            "_w": -0.1177203783937491
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.026594,
+          "cy": 0.0267166
+        },
+        {
+          "id": "e7c1c580-fd5a-11e8-8eeb-0b3706e09365",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9939.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9939_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "",
+            "fr": "Courtine nord-est, mi-XIIIe siècle"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 48.9275,
+          "position": {
+            "x": 252481.60606128597,
+            "y": 3849487.591701664,
+            "z": 670.2901356628417
+          },
+          "quaternion": {
+            "_x": -0.5896445692204191,
+            "_y": -0.5360974184000558,
+            "_z": -0.3736991666099216,
+            "_w": -0.47462382246228646
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.032677,
+          "cy": -0.0732579
+        },
+        {
+          "id": "4277dcd0-fd51-11e8-8e20-15ac29471010",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9972.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS__DSC9972_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "La chapelle"
+          },
+          "description": {
+            "en": "",
+            "fr": "Intérieur de la chapelle, vue en direction du chevet."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 66.3573,
+          "position": {
+            "x": 252386.24696128597,
+            "y": 3849473.1681016637,
+            "z": 706.9910356628418
+          },
+          "quaternion": {
+            "_x": 0.6052600904768305,
+            "_y": -0.4292882011539877,
+            "_z": -0.3677418843185489,
+            "_w": 0.5604799458890527
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": 0.0269874,
+          "cy": -0.0543722
+        },
+        {
+          "id": "e9c6d690-fd55-11e8-9fbf-6d571de99950",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSC0089---Copie.JPG_C.-YOVITCHITCH-2008.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSC0089---Copie_tn.jpg",
+          "date": 2008,
+          "period": "2008",
+          "title": {
+            "en": "",
+            "fr": "Tour du châtelain"
+          },
+          "description": {
+            "en": "",
+            "fr": "Tour sud-ouest qui jaillit du puissant glacis"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 83.9122,
+          "position": {
+            "x": 252307.68066128597,
+            "y": 3849377.1700016637,
+            "z": 708.5218356628418
+          },
+          "quaternion": {
+            "_x": 0.48037773655550775,
+            "_y": -0.5383754843402352,
+            "_z": -0.5219421944552484,
+            "_w": 0.4549345158706517
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.0209715,
+          "cy": 0.0157575
+        },
+        {
+          "id": "ff832a70-fd4f-11e8-9c68-414b484164a4",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSC0094.JPG_C.-YOVITCHITCH-2008.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSC0094_tn.jpg",
+          "date": 2008,
+          "period": "2008",
+          "title": {
+            "en": "",
+            "fr": "Tour des latrines. Vue ouest."
+          },
+          "description": {
+            "en": "",
+            "fr": "Cette tour présente à sa base un glaci d'où partent trois grands arcs brisés dans lesquels de déversaient les douze latrines de l'étage."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 65.0216,
+          "position": {
+            "x": 252361.45647869416,
+            "y": 3849527.716665845,
+            "z": 701.426200390625
+          },
+          "quaternion": {
+            "_x": 0.15849297228297743,
+            "_y": -0.7478580677505375,
+            "_z": -0.6309770266381254,
+            "_w": 0.13212221649764314
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.00409745,
+          "cy": -0.0125944
+        },
+        {
+          "id": "44248f80-fd5e-11e8-9f8a-db18316fd6f7",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSC0095.JPG_C.-YOVITCHITCH-2008.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSC0095_tn.jpg",
+          "date": 2008,
+          "period": "2008",
+          "title": {
+            "en": "",
+            "fr": "Enceinte primitive"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue extérieure de la zone nord-ouest de l'enceinte primitive entre la chapelle et la tour des latrines. À la base du mur on distingue une évacuation rectangulaire appartenant aux latrines situées à l'intérieur de la salle."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 35.9301,
+          "position": {
+            "x": 252374.09036128598,
+            "y": 3849535.310001664,
+            "z": 702.5668356628418
+          },
+          "quaternion": {
+            "_x": 0.1289231001661872,
+            "_y": -0.7378276028108744,
+            "_z": -0.6527038906548269,
+            "_w": 0.1138722701009742
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": 0.0291996,
+          "cy": 0.0123302
+        },
+        {
+          "id": "18abf550-fd4a-11e8-844a-ef329a6089bd",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSCN0988.JPG_C.-YOVITCHITCH-2004-.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSCN0988_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour sud du donjon"
+          },
+          "description": {
+            "en": "",
+            "fr": "Face sur cour de la tour sud. Les parties supérieures de la tour appartiennent à un rehaussement de la tour maîtresse lors des travaux de refortification du début du XIIIe siècle. Elles abritent des salles de réception et de commandement."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 38.0291,
+          "position": {
+            "x": 252365.527961286,
+            "y": 3849423.228001664,
+            "z": 716.5573356628418
+          },
+          "quaternion": {
+            "_x": 0.09969939453151423,
+            "_y": -0.7407645073418109,
+            "_z": -0.6570911542380372,
+            "_w": 0.0977711123738371
+          },
+          "width": 960,
+          "height": 1280,
+          "cx": -0.0692439,
+          "cy": -0.0398602
+        },
+        {
+          "id": "56b04fd0-fd4b-11e8-80fa-e1567f6ddcf4",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSCN4552_C.-YOVITCHITCH-2003.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSCN4552_C_tn.jpg",
+          "date": 2003,
+          "period": "2003",
+          "title": {
+            "en": "",
+            "fr": "La chapelle du Crac"
+          },
+          "description": {
+            "en": "",
+            "fr": "Portail occidental et porche sud."
+          },
+          "credits": {
+            "en": "Cyrili Yovitchitch",
+            "fr": "Cyrili Yovitchitch"
+          },
+          "vFOV": 54.9456,
+          "position": {
+            "x": 252371.00806128597,
+            "y": 3849460.452211664,
+            "z": 715.9148356628418
+          },
+          "quaternion": {
+            "_x": 0.5462006779348996,
+            "_y": -0.28760169685168874,
+            "_z": -0.3676649024627836,
+            "_w": 0.695537635853386
+          },
+          "width": 2048,
+          "height": 1536,
+          "cx": 0.00613499,
+          "cy": 0.00128573
+        },
+        {
+          "id": "2686cb30-fd4c-11e8-9e78-df72366d7630",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSCN4559_C.-YOVITCHITCH-2003.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_DSCN4559_C_tn.jpg",
+          "date": 2003,
+          "period": "2003",
+          "title": {
+            "en": "",
+            "fr": "Tour sud du donjon"
+          },
+          "description": {
+            "en": "",
+            "fr": "Premier étage de la tour sud."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 53.4334,
+          "position": {
+            "x": 252381.83416128598,
+            "y": 3849373.468101664,
+            "z": 717.1515356628418
+          },
+          "quaternion": {
+            "_x": -0.7234476818452812,
+            "_y": -0.08058419396096837,
+            "_z": -0.07635421452273738,
+            "_w": -0.681395386865046
+          },
+          "width": 2048,
+          "height": 1536,
+          "cx": 0.0248318,
+          "cy": -0.0126611
+        },
+        {
+          "id": "84ae88a0-fd4d-11e8-9164-cf46928c3bb0",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_Galerie-de-la-Grande-salle.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_Galerie-de-la-Grande-salle_tn.jpg",
+          "date": 2010,
+          "period": "2010",
+          "title": {
+            "en": "The Hall of the Knights",
+            "fr": "Vue extérieure de la galerie de la grand'salle du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "Portique de la grand'salle gothique"
+          },
+          "credits": {
+            "en": "Equipe castellologie médiévale au Proche-Orient",
+            "fr": "Equipe castellologie médiévale au Proche-Orient"
+          },
+          "vFOV": 62.8669,
+          "position": {
+            "x": 252401.25996128598,
+            "y": 3849439.993101664,
+            "z": 709.1798356628418
+          },
+          "quaternion": {
+            "_x": -0.5191178163002518,
+            "_y": -0.4806452195731521,
+            "_z": -0.47456502205034234,
+            "_w": -0.5237221644607879
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": -0.00233836,
+          "cy": -0.0253546
+        },
+        {
+          "id": "71662000-fec9-11e8-9e73-6de97b604609",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_Tour_de_Qalâwun_couronnement.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_Tour_de_Qalâwun_couronnement_tn.jpg",
+          "date": 1859,
+          "period": "1859-1860",
+          "title": {
+            "en": "",
+            "fr": "Première enceinte du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "Kalaat-El-Hosn - Première enceinte, parois, intérieur midi. Épreuve sur papier salé de Louis de Clercq (1837-1901). Musée d'Orsay (PHO1986-133-2-24)."
+          },
+          "credits": {
+            "en": "RMN-Grand Palais (musée d'Orsay). Cl. Hervé Lewandowski",
+            "fr": "RMN-Grand Palais (musée d'Orsay). Cl. Hervé Lewandowski"
+          },
+          "vFOV": 34.0491,
+          "position": {
+            "x": 252304.86876128596,
+            "y": 3849377.231201664,
+            "z": 707.8201356628418
+          },
+          "quaternion": {
+            "_x": 0.30840648336854704,
+            "_y": -0.5952969479226535,
+            "_z": -0.6628164073029511,
+            "_w": 0.3334387425303608
+          },
+          "width": 691,
+          "height": 655,
+          "cx": 0.394424,
+          "cy": -0.103073
+        },
+        {
+          "id": "42040e80-fe24-11e8-b5dd-b37488d601ff",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_Vue-aérienne_-Front-nord.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_Vue-aérienne_-Front-nord_tn.jpg",
+          "date": 2009,
+          "period": "2009",
+          "title": {
+            "en": "Aerial view from the North",
+            "fr": "Vue aérienne du front nord du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Equipe castellologie médiévale du Proche-Orient",
+            "fr": "Equipe castellologie médiévale du Proche-Orient"
+          },
+          "vFOV": 45.7407,
+          "position": {
+            "x": 252388.39526128597,
+            "y": 3849657.523701664,
+            "z": 792.5418356628418
+          },
+          "quaternion": {
+            "_x": -0.02279537109306027,
+            "_y": -0.5215337033615516,
+            "_z": -0.8529055205126506,
+            "_w": 0.005927933346419412
+          },
+          "width": 3000,
+          "height": 2008,
+          "cx": 0.011062,
+          "cy": 0.0186528
+        },
+        {
+          "id": "cc0a4720-fe29-11e8-b609-7731c58e1e6e",
+          "file": "public/data/crac/img/CRAC-DES-CHEVALIERS_Vue-aérienne_Front-ouest.jpg",
+          "thumbnail": "public/data/crac/img/CRAC-DES-CHEVALIERS_Vue-aérienne_Front-ouest_tn.jpg",
+          "date": 2009,
+          "period": "2009",
+          "title": {
+            "en": "Aerial view from the West",
+            "fr": "Vue aérienne du front ouest du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Equipe castellologie médiévale du Proche-Orient",
+            "fr": "Equipe castellologie médiévale du Proche-Orient"
+          },
+          "vFOV": 43.2241,
+          "position": {
+            "x": 252623.21806128597,
+            "y": 3849357.227201664,
+            "z": 784.7973356628418
+          },
+          "quaternion": {
+            "_x": -0.4182670781159421,
+            "_y": -0.3351574789286141,
+            "_z": -0.5264255606957029,
+            "_w": -0.6599986702477384
+          },
+          "width": 3275,
+          "height": 2192,
+          "cx": 0.0198193,
+          "cy": -0.0707346
+        },
+        {
+          "id": "2ad906b0-fdee-11e8-b9ef-bb6a8de184af",
+          "file": "public/data/crac/img/crac_des_chevaliers_2.jpg",
+          "thumbnail": "public/data/crac/img/crac_des_chevaliers_2_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Le premier château hospitalier"
+          },
+          "description": {
+            "en": "",
+            "fr": "Front sud de la première enceinte"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 65.5158,
+          "position": {
+            "x": 252433.78601879004,
+            "y": 3849516.7562730405,
+            "z": 695.2399354492187
+          },
+          "quaternion": {
+            "_x": -0.2785555223155496,
+            "_y": -0.7179648297984889,
+            "_z": -0.5871450406561317,
+            "_w": -0.24938729998307477
+          },
+          "width": 3872,
+          "height": 2592,
+          "cx": -0.0000152729,
+          "cy": -0.0182574
+        },
+        {
+          "id": "bb80a7a0-680b-11e8-98da-0749fbf074e7",
+          "file": "public/data/crac/img/crac_des_chevaliers_img23400.jpg",
+          "thumbnail": "public/data/crac/img/crac_des_chevaliers_img23400_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "",
+            "fr": "Le Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue aérienne du château et du village environnant"
+          },
+          "credits": {
+            "en": "INHA",
+            "fr": "INHA"
+          },
+          "vFOV": 27.2615,
+          "position": {
+            "x": 252278.16463269043,
+            "y": 3850076.18814624,
+            "z": 938.6558833007812
+          },
+          "quaternion": {
+            "_x": 0.06241646840979532,
+            "_y": -0.6645356064546346,
+            "_z": -0.7394222242844397,
+            "_w": 0.08804195851678792
+          },
+          "width": 1600,
+          "height": 1140,
+          "cx": 0.053098,
+          "cy": 0.41085
+        },
+        {
+          "id": "98d4ca00-6898-11e8-96de-f3355be07427",
+          "file": "public/data/crac/img/CRAC_Front-sud_Rey_V-Berchem_Voyage-en-Syrie.jpg",
+          "thumbnail": "public/data/crac/img/CRAC_Front-sud_Rey_V-Berchem_Voyage-en-Syrie_tn.jpg",
+          "date": 1870,
+          "period": "1870",
+          "title": {
+            "en": "",
+            "fr": "Le Crac des Chevaliers : front sud de la première enceinte (d'après Rey)"
+          },
+          "description": {
+            "en": "",
+            "fr": "Vue des ouvrages défensifs mamelouks du front sud du château avant la destruction de leurs couronnements."
+          },
+          "credits": {
+            "en": "",
+            "fr": ""
+          },
+          "vFOV": 33.8639,
+          "position": {
+            "x": 252366.67493269042,
+            "y": 3849255.3001462403,
+            "z": 708.1636833007813
+          },
+          "quaternion": {
+            "_x": 0.7442515588169192,
+            "_y": -0.012147081119136222,
+            "_z": -0.02632553433884513,
+            "_w": 0.667269834370358
+          },
+          "width": 1600,
+          "height": 715,
+          "cx": -0.0789483,
+          "cy": 0.127524
+        },
+        {
+          "id": "81c025d0-fd4e-11e8-a4e7-17b2821544dc",
+          "file": "public/data/crac/img/CRAC_HAMMAM_DSC0080.JPG_C.-YOVITCHITCH-2008.jpg",
+          "thumbnail": "public/data/crac/img/CRAC_HAMMAM_DSC0080_tn.jpg",
+          "date": 2008,
+          "period": "2008",
+          "title": {
+            "en": "",
+            "fr": "Le hammam vu depuis la terrasse"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 84.8161,
+          "position": {
+            "x": 252419.20525869416,
+            "y": 3849333.894365845,
+            "z": 695.883600390625
+          },
+          "quaternion": {
+            "_x": 0.2097408561985486,
+            "_y": -0.45806584343409346,
+            "_z": -0.7837772339714022,
+            "_w": 0.36314969892352966
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.0180489,
+          "cy": 0.037807
+        },
+        {
+          "id": "4ea780a0-689b-11e8-96de-f3355be07427",
+          "file": "public/data/crac/img/Etude_sur_les_monuments_de_Rey_Emmanuel-Guillaume.jpg",
+          "thumbnail": "public/data/crac/img/Etude_sur_les_monuments_de_Rey_Emmanuel-Guillaume_tn.jpg",
+          "date": 1871,
+          "period": "1871",
+          "title": {
+            "en": "",
+            "fr": "Le Crac des Chevaliers. Gravure de Rey"
+          },
+          "description": {
+            "en": "",
+            "fr": "Gravure du château vue du sud-ouest, tirée de G. Rey, Étude sur les monuments de l'architecture militaire des croisés en Syrie [...], Paris 1871, Pl. V."
+          },
+          "credits": {
+            "en": "Bibliothèque Nationale de France",
+            "fr": "Bibliothèque Nationale de France"
+          },
+          "vFOV": 39.4484,
+          "position": {
+            "x": 252092.91263269042,
+            "y": 3849188.4061462404,
+            "z": 733.2425833007812
+          },
+          "quaternion": {
+            "_x": 0.5554528634499145,
+            "_y": -0.3467635872754196,
+            "_z": -0.3959503736247739,
+            "_w": 0.6437782480416493
+          },
+          "width": 1536,
+          "height": 1053,
+          "cx": -0.191558,
+          "cy": -0.115484
+        },
+        {
+          "id": "1bd2f470-fe32-11e8-841e-3515b81f2ac7",
+          "file": "public/data/crac/img/Four1_sap01_dch00359p_p.jpg",
+          "thumbnail": "public/data/crac/img/Four1_sap01_dch00359p_p_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "",
+            "fr": "Le four des Hospitaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "Le four du Crac, découvert dans la salle ouest en 1928 est datable de la seconde moitié du XIIIe siècle et n’appartient pas au château primitif. Il mesurait 5 mètres de diamètre, était couvert par une voûte en cul-de-four et possédait une cheminée maçonnée située à l’aplomb d’une ouverture percée dans la voûte de la salle."
+          },
+          "credits": {
+            "en": "Médiathèque de l'architecture et du patrimoine",
+            "fr": "Médiathèque de l'architecture et du patrimoine"
+          },
+          "vFOV": 43.733,
+          "position": {
+            "x": 252361.48236128598,
+            "y": 3849413.803701664,
+            "z": 707.5943356628418
+          },
+          "quaternion": {
+            "_x": -0.6731834474661631,
+            "_y": -0.09524395745073985,
+            "_z": -0.06992285428326685,
+            "_w": -0.7299749509918639
+          },
+          "width": 326,
+          "height": 512,
+          "cx": 0.0321586,
+          "cy": 0.0294572
+        },
+        {
+          "id": "9287ca40-fe33-11e8-a8fc-b17863933e67",
+          "file": "public/data/crac/img/Four2_sap01_dch00361p_p.jpg",
+          "thumbnail": "public/data/crac/img/Four2_sap01_dch00361p_p_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "",
+            "fr": "Le four des Hospitaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "Le four du Crac, découvert dans la salle ouest en 1928 est datable de la seconde moitié du XIIIe siècle et n’appartient pas au château primitif. Il mesurait 5 mètres de diamètre, était couvert par une voûte en cul-de-four et possédait une cheminée maçonnée située à l’aplomb d’une ouverture percée dans la voûte de la salle."
+          },
+          "credits": {
+            "en": "Médiathèque de l'architecture et du patrimoine",
+            "fr": "Médiathèque de l'architecture et du patrimoine"
+          },
+          "vFOV": 78.6928,
+          "position": {
+            "x": 252360.09117869416,
+            "y": 3849435.0770658446,
+            "z": 706.894800390625
+          },
+          "quaternion": {
+            "_x": -0.05006560959164108,
+            "_y": -0.7149083399850885,
+            "_z": -0.6950823947281801,
+            "_w": -0.057096100522897104
+          },
+          "width": 324,
+          "height": 512,
+          "cx": -0.0220494,
+          "cy": 0.0211155
+        },
+        {
+          "id": "ebea9ec0-fd46-11e8-8e11-6b1d4c35f6bf",
+          "file": "public/data/crac/img/Krak_des_Chevaliers_NW_Syria.jpg",
+          "thumbnail": "public/data/crac/img/Krak_des_Chevaliers_NW_Syria_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Tour sud du donjon"
+          },
+          "description": {
+            "en": "",
+            "fr": "Salle résidentielle du second étage de la tour sud. Elle est éclairée par des baies géminées dotées de coussièges."
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 73.2725,
+          "position": {
+            "x": 252383.26537869044,
+            "y": 3849373.1246462404,
+            "z": 725.3740833007812
+          },
+          "quaternion": {
+            "_x": -0.7917276264834469,
+            "_y": -0.1571862593883202,
+            "_z": -0.11758392642698261,
+            "_w": -0.5784754666953554
+          },
+          "width": 1024,
+          "height": 681,
+          "cx": 0.0100289,
+          "cy": -0.00816634
+        },
+        {
+          "id": "2c7fdd50-fd48-11e8-be13-7f6e377c229a",
+          "file": "public/data/crac/img/sap01_dch00219p_p.jpg",
+          "thumbnail": "public/data/crac/img/sap01_dch00219p_p_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "",
+            "fr": "La chapelle du Crac"
+          },
+          "description": {
+            "en": "",
+            "fr": "Le porche sud de la chapelle"
+          },
+          "credits": {
+            "en": "Médiathèque de l'architecture et du patrimoine",
+            "fr": "Médiathèque de l'architecture et du patrimoine"
+          },
+          "vFOV": 28.7411,
+          "position": {
+            "x": 252395.951961286,
+            "y": 3849435.562901664,
+            "z": 706.9413356628418
+          },
+          "quaternion": {
+            "_x": -0.6865416341073627,
+            "_y": -0.06987014261137234,
+            "_z": -0.0598604356772777,
+            "_w": -0.72124578061101
+          },
+          "width": 765,
+          "height": 512,
+          "cx": -0.0118056,
+          "cy": -0.434479
+        },
+        {
+          "id": "8ff1e870-fec8-11e8-9112-5b228bf9248f",
+          "file": "public/data/crac/img/sap01_dch00321p_p.jpg",
+          "thumbnail": "public/data/crac/img/sap01_dch00321p_p_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "",
+            "fr": "La grand'salle du Crac des Chevaliers"
+          },
+          "description": {
+            "en": "",
+            "fr": "On observe qu'un mur de séparation est implanté dans le premier tiers sud de la salle. Il est percé d'une porte à l'est et de trois oculi."
+          },
+          "credits": {
+            "en": "Médiathèque de l'architecture et du patrimoine",
+            "fr": "Médiathèque de l'architecture et du patrimoine"
+          },
+          "vFOV": 56.5288,
+          "position": {
+            "x": 252379.08717869414,
+            "y": 3849457.876205845,
+            "z": 707.185700390625
+          },
+          "quaternion": {
+            "_x": -0.18402605448633935,
+            "_y": -0.7542261276707419,
+            "_z": -0.6028201817075582,
+            "_w": -0.18407929849674895
+          },
+          "width": 768,
+          "height": 502,
+          "cx": -0.0367981,
+          "cy": 0.0568127
+        },
+        {
+          "id": "03c000b0-ff88-11e8-b630-a9a000038009",
+          "file": "public/data/crac/img/sap01_dch00375p.jpg",
+          "thumbnail": "public/data/crac/img/sap01_dch00375p_tn.jpg",
+          "date": 1927,
+          "period": "1927-1936",
+          "title": {
+            "en": "",
+            "fr": "Chambre du châtelain"
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "credits": {
+            "en": "Médiathèque de l'architecture et du patrimoine",
+            "fr": "Médiathèque de l'architecture et du patrimoine"
+          },
+          "vFOV": 54.6315,
+          "position": {
+            "x": 252350.92555128597,
+            "y": 3849378.8822016637,
+            "z": 724.9339356628418
+          },
+          "quaternion": {
+            "_x": -0.45556130606332046,
+            "_y": -0.6038781930743556,
+            "_z": -0.511579732174589,
+            "_w": -0.4075306147706065
+          },
+          "width": 768,
+          "height": 500,
+          "cx": -0.071318,
+          "cy": 0.0153353
+        },
+        {
+          "id": "27e55f70-0510-11e9-a37e-5d8f8ffa5189",
+          "file": "public/data/crac/img/CRAC_Tour-sud-ouest_intérieur1.jpg",
+          "thumbnail": "public/data/crac/img/CRAC_Tour-sud-ouest_intérieur1_tn.jpg",
+          "date": 2004,
+          "period": "2004-2008",
+          "title": {
+            "en": "",
+            "fr": "Pilier central"
+          },
+          "description": {
+            "en": "",
+            "fr": "Pilier octogonal de la tour sud-ouest construite par le sultan mamelouk Baybars après sa prise du Crac en 1271"
+          },
+          "credits": {
+            "en": "Cyril Yovitchitch",
+            "fr": "Cyril Yovitchitch"
+          },
+          "vFOV": 86.7525,
+          "position": {
+            "x": 252318.17578479004,
+            "y": 3849342.748803041,
+            "z": 700.6990354492187
+          },
+          "quaternion": {
+            "_x": -0.19898732168620709,
+            "_y": -0.7611961769608032,
+            "_z": -0.5932079420307632,
+            "_w": -0.170554283147724
+          },
+          "width": 2592,
+          "height": 3872,
+          "cx": -0.0232622,
+          "cy": 0.0180016
+        }
+    ]
+  },
+    "timeline": {
+        "start": 1850,
+        "end": 2019
+    }
+}
