@@ -740,6 +740,32 @@ export class Renderer {
 				mat4holder.set(world.elements);
 				gl.uniformMatrix4fv(lModel, false, mat4holder);
 			}
+			if (document.test ) {
+				console.log(world.elements.join(', '));
+				document.test = false;
+			}
+			// TODO consider passing matrices in an array to avoid uniformMatrix4fv overhead
+			const lModelInverse = shader.uniformLocations["modelMatrixInverse"];
+			if (lModelInverse) {
+				let modelMatrixInverse = new THREE.Matrix4().getInverse(world);
+				mat4holder.set(modelMatrixInverse.elements);
+				gl.uniformMatrix4fv(lModelInverse, false, mat4holder);
+			}
+			// TODO consider passing matrices in an array to avoid uniformMatrix4fv overhead
+			/*
+			if (window.viewer && window.viewer.scene && window.viewer.scene.pointclouds) {
+				if (window.viewer.scene.pointclouds.length > 0) {
+					let uniforms = window.viewer.scene.pointclouds[0].material.uniforms;
+					let downsamplingEllipseMatrixInverse = uniforms.downsamplingEllipseMatrixInverse.value;
+					const lModelEllipseInverse = shader.uniformLocations["downsamplingEllipseMatrixInverse_modelMatrix"];
+					if (lModelEllipseInverse) {
+						let downsamplingEllipseMatrixInverse_modelMatrix = new THREE.Matrix4().multiplyMatrices(downsamplingEllipseMatrixInverse, world);
+						mat4holder.set(downsamplingEllipseMatrixInverse_modelMatrix.elements);
+						gl.uniformMatrix4fv(lModelEllipseInverse, false, mat4holder);
+					}
+				}
+			}
+			*/
 
 			const lModelView = shader.uniformLocations["modelViewMatrix"];
 			//mat4holder.set(worldView.elements);
@@ -974,9 +1000,10 @@ export class Renderer {
 
 				}
 
-				//vs = `#define num_shadowmaps ${shadowMaps.length}\n` + vs;
-				//fs = `#define num_shadowmaps ${shadowMaps.length}\n` + fs;
-
+				let numDownsamplingPolygonVerts = (material.downsamplingPolygon && material.downsamplingPolygon.length) ? material.downsamplingPolygon.length : 0;
+				defines.push(`#define num_downsamplingPolygonVerts ${numDownsamplingPolygonVerts}`);
+				
+				
 				let definesString = defines.join("\n");
 
 				let vsVersionIndex = vs.indexOf("#version ");
@@ -1209,6 +1236,35 @@ export class Renderer {
 			gl.activeTexture(gl.TEXTURE0 + currentTextureBindingPoint);
 			gl.bindTexture(classificationTexture.target, classificationTexture.id);
 			currentTextureBindingPoint++;
+			
+			// Downsampling parameters : ellipse or polygon
+			shader.setUniformMatrix4("downsamplingEllipseMatrix", material.uniforms.downsamplingEllipseMatrix.value);
+			shader.setUniformMatrix4("downsamplingEllipseMatrixInverse", material.uniforms.downsamplingEllipseMatrixInverse.value);
+			shader.setUniform1f("downsamplingWidth", material.uniforms.downsamplingWidth.value);
+			
+			/*if (material.downsamplingPolygon && material.downsamplingPolygon.length > 0) {
+				{
+					//let polygonVertices = material.downsamplingPolygon.map(p => p.position.toArray());
+					//let flattenedVertices = [].concat(...polygonVertices);
+					let flattenedVertices = material.downsamplingPolygon.map(p => p.position.toArray());
+					const ldownsamplingPolygonVerts = shader.uniformLocations["downsamplingPolygonVerts[0]"];
+					gl.uniform3fv(ldownsamplingPolygonVerts, false, flattenedVertices);
+				}
+			}
+			*/
+			if(material.downsamplingPolygon && material.downsamplingPolygon.length > 0){
+				let verts = material.downsamplingPolygon;
+				let flattenedVertices = new Array(3 * verts.length);
+				for(let i = 0; i < verts.length; i++){
+					let vert_i = verts[i].position;
+					flattenedVertices[i * 3 + 0] = vert_i.x;
+					flattenedVertices[i * 3 + 1] = vert_i.y;
+					flattenedVertices[i * 3 + 2] = vert_i.z;
+				}
+				const ldownsamplingPolygonVerts = shader.uniformLocations["downsamplingPolygonVerts[0]"];
+				gl.uniform3fv(ldownsamplingPolygonVerts, flattenedVertices);
+
+			}
 
 
 			if (material.snapEnabled === true) {

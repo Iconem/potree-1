@@ -133,6 +133,13 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			uFilterReturnNumberRange:		{ type: "fv", value: [0, 7]},
 			uFilterNumberOfReturnsRange:	{ type: "fv", value: [0, 7]},
 			uFilterGPSTimeClipRange:		{ type: "fv", value: [0, 7]},
+
+			downsamplingEllipseMatrix:	{ type: "Matrix4fv", value: [] },
+			downsamplingEllipseMatrixInverse:	{ type: "Matrix4fv", value: [] },
+			downsamplingEllipseMatrixInverse_modelMatrix:	{ type: "Matrix4fv", value: [] },
+			downsamplingWidth: { type: "f", value: 100. },	
+			downsamplingPolygon: { type: "3fv", value: [] },	
+
 		};
 
 		this.classification = ClassificationScheme.DEFAULT;
@@ -776,6 +783,48 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 				type: 'material_property_changed',
 				target: this
 			});
+		}
+	}
+
+	get downsamplingWidth () {
+		return this.uniforms.downsamplingWidth.value;
+	}
+
+	set downsamplingWidth (value) {
+		if (this.uniforms.downsamplingWidth.value !== value) {
+			this.uniforms.downsamplingWidth.value = value;
+			this.dispatchEvent({
+				type: 'material_property_changed',
+				target: this
+			});
+		}
+	}
+	
+	get downsamplingEllipseMatrix () {
+		return this.uniforms.downsamplingEllipseMatrix.value;
+	}
+
+	set downsamplingEllipseMatrix (value) {
+		if (this.uniforms.downsamplingEllipseMatrix.value !== value) {
+			this.uniforms.downsamplingEllipseMatrix.value = value;
+			let downsamplingEllipseMatrixInverse = new THREE.Matrix4().getInverse(this.uniforms.downsamplingEllipseMatrix.value);
+			this.uniforms.downsamplingEllipseMatrixInverse.value = downsamplingEllipseMatrixInverse;
+
+			this.dispatchEvent({
+				type: 'material_property_changed',
+				target: this
+			});
+		}
+	}
+
+	get downsamplingPolygon () {
+		return this.uniforms.downsamplingPolygon.value;
+	}
+
+	set downsamplingPolygon (value) {
+		if (this.uniforms.downsamplingPolygon.value !== value) {
+			this.uniforms.downsamplingPolygon.value = value;
+			this.dispatchEvent({ type: 'material_property_changed', target: this });
 		}
 	}
 
