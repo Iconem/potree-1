@@ -35,13 +35,17 @@ uniform float uOrthoWidth;
 uniform float uOrthoHeight;
 
 // downsampling density based on parameters
+#if defined(num_downsamplingPolygonVerts)
+uniform float downsamplingWidth;
+uniform mat4 modelMatrixInverse;
+#endif
+// if num_downsamplingPolygonVerts == -1: no downsampling, if == 0: sphere if > 0: polygon
+#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > 0
+uniform vec3 downsamplingPolygonVerts[num_downsamplingPolygonVerts];
+#elif defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts == 0
 uniform mat4 downsamplingEllipseMatrix;
 uniform mat4 downsamplingEllipseMatrixInverse;
 uniform mat4 downsamplingEllipseMatrixInverse_modelMatrix;
-uniform float downsamplingWidth;
-uniform mat4 modelMatrixInverse;
-#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > 0
-uniform vec3 downsamplingPolygonVerts[num_downsamplingPolygonVerts];
 //uniform vec3 downsamplingPolygonVerts[100];
 #endif
 
@@ -496,6 +500,8 @@ float rand_f(vec3 pos){
 
 
 float getDistance_Ellipsoid(){ 
+
+#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts == 0
 	// viewer.scene.pointclouds[0].material.downsamplingEllipseMatrix = viewer.scene.volumes[0].matrixWorld.clone()
 
     vec4 pos_world = modelMatrix * vec4( position, 1.0 );
@@ -511,6 +517,9 @@ float getDistance_Ellipsoid(){
 	//float dist_normalized = (pointDist - min_dist) / (max_dist - min_dist); // dist between 0 and 1 
 	// float dist_normalized = (pointDist - 1.) / downsamplingWidth; // dist between 0 and 1 
 	float dist = pointDist_local <= 1. ? 0. : pointDist; // dist between 0 and 1 
+#else
+	float dist = 0.;
+#endif
 	return dist; 
 } 
 
@@ -566,11 +575,16 @@ float getDistance_Polygon(){
 		}
 		dist_i = length(pos_xy - closest);
 		//if (cross(e, v).z > 0.) {
-		
+		/*
 		if (e.x * v.y - e.y * v.x > 0.) {
 			dist_i = 0.;
-		}
+		}*/
 		//dist = min(dist_i, dist);
+
+		// Work with clockwise or counter-cw polygons;
+		dist_i = abs(dist_i);
+		
+		// distance is minimum of two distances, unless point is at least on one side inside polygon
 		if (i == 0) {
 			dist = dist_i;
 		}
@@ -604,13 +618,19 @@ float getDistance_Polygon(){
 
 float getNormalizedDistance(){ 
 	float dist; 
-	dist = getDistance_Ellipsoid(); 
-	dist = getDistance_Polygon();
-
-	// Truncated linear
+#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts >= 0
+	if (num_downsamplingPolygonVerts > 0) {
+		dist = getDistance_Polygon();
+	} else {
+		dist = getDistance_Ellipsoid(); 
+	}
 	float dist_normalized = dist / downsamplingWidth;
 	dist_normalized = min(max(dist_normalized, 0.), 1.); //truncated linear
-
+#else
+	float dist_normalized = 0.;
+#endif
+	// Truncated linear
+	dist_normalized -= 0.001;
 	// Sigmoid
 	//return 1. / (1. + exp (- 10. * (dist_normalized - 0.5) )) ;
     //smooth sigmoid : ( 1 / (1 + exp (- 50 * ($PT/$NPT - 0.5) )) ) > rand($TX) 
@@ -645,7 +665,7 @@ vec3 getColor(){
 	
 	#ifdef color_type_rgb
 		color = getRGB();
-		color = getNormalizedDistance() * vec3(1., 1., 1.);
+		//color = getNormalizedDistance() * vec3(1., 1., 1.);
 	#elif defined color_type_height
 		color = getElevation();
 		float w = (getNormalizedDistance() - elevationRange.x) / (elevationRange.y - elevationRange.x);
@@ -690,7 +710,7 @@ vec3 getColor(){
 	#endif
 	
     //if(false && (0.5 > snoise(vec4(position, 10.) / 100000000.)) ){ 
-    if(false && getNormalizedDistance() > rand_f(position.xyz)) { 
+    if(true && getNormalizedDistance() > rand_f(position.xyz)) { 
         gl_Position = vec4(100.0, 100.0, 100.0, 0.0); 
         color.r = 0.0; 
         color.g = 0.0; 

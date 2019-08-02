@@ -1000,7 +1000,16 @@ export class Renderer {
 
 				}
 
-				let numDownsamplingPolygonVerts = (material.downsamplingPolygon && material.downsamplingPolygon.length) ? material.downsamplingPolygon.length : 0;
+				let numDownsamplingPolygonVerts; 
+				if (material.downsamplingPolygon && material.downsamplingPolygon.length > 0) {
+					numDownsamplingPolygonVerts = material.downsamplingPolygon.length;
+				} else {
+					if (material.downsamplingEllipseMatrix) {
+						numDownsamplingPolygonVerts = 0;
+					} else {
+						numDownsamplingPolygonVerts = -1;
+					}
+				} 
 				defines.push(`#define num_downsamplingPolygonVerts ${numDownsamplingPolygonVerts}`);
 				
 				
