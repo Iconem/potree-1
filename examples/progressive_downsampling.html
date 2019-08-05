@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Potree Viewer</title>
+
+	<link rel="stylesheet" type="text/css" href="../build/potree/potree.css">
+	<link rel="stylesheet" type="text/css" href="../libs/jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../libs/perfect-scrollbar/css/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../libs/openlayers3/ol.css">
+	<link rel="stylesheet" type="text/css" href="../libs/spectrum/spectrum.css">
+	<link rel="stylesheet" type="text/css" href="../libs/jstree/themes/mixed/style.css">
+</head>
+
+<body>
+	<script src="../libs/jquery/jquery-3.1.1.min.js"></script>
+	<script src="../libs/spectrum/spectrum.js"></script>
+	<script src="../libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+	<script src="../libs/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../libs/three.js/build/three.min.js"></script>
+	<script src="../libs/other/BinaryHeap.js"></script>
+	<script src="../libs/tween/tween.min.js"></script>
+	<script src="../libs/d3/d3.js"></script>
+	<script src="../libs/proj4/proj4.js"></script>
+	<script src="../libs/openlayers3/ol.js"></script>
+	<script src="../libs/i18next/i18next.js"></script>
+	<script src="../libs/jstree/jstree.js"></script>
+	<script src="../build/potree/potree.js"></script>
+	<script src="../libs/plasio/js/laslaz.js"></script>
+	
+	<!-- INCLUDE ADDITIONAL DEPENDENCIES HERE -->
+	<!-- INCLUDE SETTINGS HERE -->
+	
+	<div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
+		<div id="potree_render_area"></div>
+		<div id="potree_sidebar_container"> </div>
+	</div>
+	
+	
+	<div style="position: absolute; right: 10px; top: 10px; z-index: 100; font-weight: bold; color: white; font-size: 40px; ">
+		<div style="padding: 10px;" onclick="addPtcAndDownsamplingObjs(datasetIdx++)">⬆</div>
+		<div style=" padding: 10px;" onclick="addPtcAndDownsamplingObjs(--datasetIdx)">⬇</div>
+	</div>
+	<div style="position: absolute; right: 10px; top: 175px; z-index: 100; color: white; font-size: 14px; width: 200px;">
+		<span>Downsampling Width:</span> <span id="lblDownsamplingWidth">X</span> 
+		<div id="sldDownsamplingWidth" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+			<span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
+	</div>
+	<div style="position: absolute; right: 10px; top: 225px; z-index: 100; ">
+		<button style="padding: 10px;" onclick="switchDebugShaderState()">SWITCH DEBUG SHADER STATE</div>
+	</div>
+		
+		
+	<script>
+
+		var debugShaderState = true;
+		function switchDebugShaderState() {
+			debugShaderState = !debugShaderState;
+			for (let ptc of viewer.scene.pointclouds) {
+				ptc.material.pointColorType = debugShaderState ? Potree.PointColorType.RGB : Potree.PointColorType.HEIGHT;
+			}
+		}
+
+
+		var datasetIdx = 2;
+		$('#sldDownsamplingWidth').slider({
+			value: 0,
+			min: -2,
+			max: 3,
+			step: 0.01,
+			slide: (event, ui) => { 
+				width = Math.pow(10, ui.value);
+				$('#lblDownsamplingWidth')[0].innerHTML = width.toFixed(2);
+				for (let p of viewer.scene.pointclouds) {
+					p.material.downsamplingWidth = width;
+                }
+			}
+		});
+
+		function add_potree_viewer() {
+			window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
+			viewer.setEDLEnabled(true);
+			viewer.setFOV(60);
+			viewer.setPointBudget(10*1000*1000);
+			viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
+			viewer.loadSettingsFromURL();
+
+			
+			viewer.loadGUI(() => {
+				viewer.setLanguage('en');
+				$("#menu_appearance").next().show();
+				$("#menu_tools").next().show();
+				$("#menu_scene").next().show();
+				viewer.toggleSidebar();
+			});
+			
+				
+		}
+        
+		function add_pointclouds_to_scene(cloud_fps, volume, measure, width) {
+			console.log(cloud_fps);
+            timer = setInterval(function() {
+                if (viewer.scene.pointclouds.length > 0 && viewer.scene.volumes.length > 0) {
+                    for (let p of viewer.scene.pointclouds) {
+                        p.material.downsamplingEllipseMatrix = viewer.scene.volumes[0].matrixWorld.clone();
+                    }
+                }
+                if (viewer.scene.pointclouds.length > 0 && viewer.scene.measurements.length > 0) {
+                    for (let p of viewer.scene.pointclouds) {
+                        p.material.downsamplingPolygon = viewer.scene.measurements[0].points; 
+                    }
+                } else {
+                    for (let p of viewer.scene.pointclouds) {
+                        p.material.downsamplingPolygon = null;
+                    }
+					
+				}
+            }, 500) ;
+            
+            cloud_fps.forEach(function (cloud_fp) {
+                Potree.loadPointCloud(cloud_fp, cloud_fp, e => {
+					console.log(cloud_fp);
+                    let pointcloud = e.pointcloud;
+                    let material = pointcloud.material;
+                    viewer.scene.addPointCloud(pointcloud);
+					// Set pointcloud material
+					
+					material.pointColorType = Potree.PointColorType.HEIGHT;
+					material.pointColorType = Potree.PointColorType.RGB;
+					material.elevationRange = [-1, 2];
+					
+                    material.size = 1;
+                    material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+                    material.pointSizeType = Potree.PointSizeType.FIXED;
+                    material.shape = Potree.PointShape.CIRCLE;
+					
+					viewer.fitToScreen();
+					
+
+                    // viewer.scene.pointclouds[0].material.downsamplingEllipseMatrix = viewer.scene.volumes[0].matrixWorld.clone()
+                    material.downsamplingEllipseMatrix = volume.matrixWorld;
+                    material.downsamplingWidth = width;
+					material.downsamplingPolygon = measure.points; 
+					
+                    // [-0.18421298265457153,-2.2564060091972347,3.561807453632351,1.9097316861152667,-1.439433649182318,3.466807454824444,2.1407316923141497,0.5995248556137116,2.757821276783939,1.372745513916017,-0.06246131658553811,4.359779797494409,0.024773180484772173,-1.5844336524605735,4.531779795885083];
+
+				});	
+            });
+
+            
+		}
+			
+		// Create pyramids
+		add_potree_viewer();
+
+		function addPtcAndDownsamplingObjs(idx) {
+			// TODO : REMOVE MEASUREMENTS AND VOLUMES
+			for (let p of viewer.scene.pointclouds) {
+				viewer.scene.scenePointCloud.children.pop();
+			}
+			viewer.scene.pointclouds = [];
+			viewer.scene.removeAllMeasurements();
+
+			// Ptc
+			let cloud_fps;
+			// VOLUME
+			let volume  = new Potree.SphereVolume();
+			// AREA MEASURE
+			let measure = new Potree.Measure();
+			measure.name = "Area";
+			measure.closed = true;
+			measure.showArea = false;
+			measure.lengthUnit = {code: 'm', unitspermeter: '1'};
+			measure.lengthUnitDisplay = {code: 'm', unitspermeter: '1'};
+			console.log('loading dataset number ' + idx);
+			switch (idx) {
+				// case 0 is lion, default
+				case 1: 
+					cloud_fps = [
+						"../pointclouds/vol_total/cloud.js"
+					];
+					// HEIDENTOR
+					volume.scale.set(133, 133, 133);
+					volume.position.set(589780, 231423., 751);
+					width = 50;
+					break;
+				default: 
+					cloud_fps = [
+						"../pointclouds/lion_takanawa/cloud.js"
+					];
+					// volume
+					volume.scale.set(2., 1., 3.);
+					volume.position.set(1., -1., 5);
+					// measure
+					measure.addMarker(new THREE.Vector3(-0.18421298265457153,-2.2564060091972347,3.561807453632351));
+					measure.addMarker(new THREE.Vector3(1.9097316861152667,-1.439433649182318,3.466807454824444));
+					measure.addMarker(new THREE.Vector3(2.1407316923141497,0.5995248556137116,2.757821276783939));
+					measure.addMarker(new THREE.Vector3(1.372745513916017,-0.06246131658553811,4.359779797494409));
+					measure.addMarker(new THREE.Vector3(0.024773180484772173,-1.5844336524605735,4.531779795885083));
+					width = 1.;
+					break; 
+			}
+
+			volume.updateMatrixWorld();
+			viewer.scene.addVolume(volume);
+			viewer.scene.addMeasurement(measure);
+			add_pointclouds_to_scene(cloud_fps, volume, measure, width);
+			//viewer.fitToScreen();
+
+			return [cloud_fps, volume, measure, width];
+		}
+		
+		[cloud_fps, volume, measure, width] = addPtcAndDownsamplingObjs(datasetIdx++);
+		
+		timer = setInterval(function() {
+			if (viewer.scene.pointclouds.length > 0 && viewer.scene.volumes.length > 0) {
+				for (let ptc of viewer.scene.pointclouds) {
+					ptc.material.downsamplingEllipseMatrix = viewer.scene.volumes[0].matrixWorld.clone();
+				}
+			}
+		}, 500) ;
+	</script>
+	
+	
+  </body>
+</html>

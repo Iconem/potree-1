@@ -495,7 +495,7 @@ vec3 getCompositeColor(){
 
 
 float rand_f(vec3 pos){ 
-	return fract(sin(dot(pos.xy ,vec2(12.9898,78.233))) * 43758.5453); 
+	return fract(sin(pos.z * dot(pos.xy, vec2(12.9898,78.233))) * 43758.5453); 
 } 
 
 
@@ -541,19 +541,9 @@ int ptInPoly(int nvert, vec3 verts[100], vec3 pt)
 */
 
 float getDistance_Polygon(){ 
-	// viewer.scene.pointclouds[0].material.downsamplingEllipseMatrix = viewer.scene.volumes[0].matrixWorld.clone()
-
-
-	//float min_dist = 1., max_dist = min_dist + downsamplingWidth;
-	//float dist = (pointDist - min_dist) / (max_dist - min_dist); // dist between 0 and 1 
-	//float dist = (pointDist - 1.) / downsamplingWidth; // dist between 0 and 1 
-	//dist = min(max(dist, 0.), 1.); //truncated linear
-	
 	vec4 pos_world = modelMatrix * vec4( position, 1.0 );
-	float dist = -1.; // downsamplingPolygonVerts[0][0];
+	float dist = -1.; 
 #if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > 0
-	//dist = downsamplingPolygonVerts[num_downsamplingPolygonVerts - 1][0];
-
 	for (int i = 0; i < 0+1 * (num_downsamplingPolygonVerts + 1); i++) {
 		vec4 e0_ = modelMatrixInverse * vec4(downsamplingPolygonVerts[i], 1);
 		vec4 e1_ = modelMatrixInverse * vec4(downsamplingPolygonVerts[i + 1 < num_downsamplingPolygonVerts ? i + 1 : 0], 1);
@@ -593,7 +583,6 @@ float getDistance_Polygon(){
 		} else {
 			dist = min(dist_i, dist);
 		}
-		//dist = dist_i;
 	}
 	
 	// Check if point is inside polygon, concave/convex. 
@@ -625,16 +614,16 @@ float getNormalizedDistance(){
 		dist = getDistance_Ellipsoid(); 
 	}
 	float dist_normalized = dist / downsamplingWidth;
-	dist_normalized = min(max(dist_normalized, 0.), 1.); //truncated linear
+	// TRUNCATED LINEAR, non soft changes in density
+	// dist_normalized = min(max(dist_normalized, 0.), 1.); //truncated linear
+	// SIGMOID, smoother
+	dist_normalized = 1. / (1. + exp (- 1. * (dist - 0.*downsamplingWidth) / downsamplingWidth ));
+	// OTHER EXAMPLE SHADER FUNCTIONS : http://www.flong.com/texts/code/shapers_exp/
+	// Display 1 point out of 1000 on the outer boundary, might need to be removed
+	dist_normalized -= 0.001;
 #else
 	float dist_normalized = 0.;
 #endif
-	// Truncated linear
-	dist_normalized -= 0.001;
-	// Sigmoid
-	//return 1. / (1. + exp (- 10. * (dist_normalized - 0.5) )) ;
-    //smooth sigmoid : ( 1 / (1 + exp (- 50 * ($PT/$NPT - 0.5) )) ) > rand($TX) 
-
 	return dist_normalized;
 }
 
@@ -665,11 +654,12 @@ vec3 getColor(){
 	
 	#ifdef color_type_rgb
 		color = getRGB();
-		//color = getNormalizedDistance() * vec3(1., 1., 1.);
 	#elif defined color_type_height
 		color = getElevation();
 		float w = (getNormalizedDistance() - elevationRange.x) / (elevationRange.y - elevationRange.x);
 		color = texture2D(gradient, vec2(w,1.0-w)).rgb;
+
+		color = getNormalizedDistance() * vec3(1., 1., 1.);
 	#elif defined color_type_rgb_height
 		vec3 cHeight = getElevation();
 		color = (1.0 - uTransition) * getRGB() + uTransition * cHeight;
@@ -710,13 +700,14 @@ vec3 getColor(){
 	#endif
 	
     //if(false && (0.5 > snoise(vec4(position, 10.) / 100000000.)) ){ 
+#ifdef color_type_rgb // debug mode : in color mode, apply density, else in elevation mode, apply density to color
     if(true && getNormalizedDistance() > rand_f(position.xyz)) { 
         gl_Position = vec4(100.0, 100.0, 100.0, 0.0); 
         color.r = 0.0; 
         color.g = 0.0; 
         color.b = 0.0; 
-		
     }
+#endif
 	//color = vec3(downsamplingEllipseMatrix[0][0], downsamplingEllipseMatrix[0][1], downsamplingEllipseMatrix[0][2]); 
 	
 	//color = snoise(vec4(position, 10.)) * vec3(1.,1.,1.);
