@@ -138,6 +138,7 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			downsamplingEllipseMatrixInverse:	{ type: "Matrix4fv", value: [] },
 			downsamplingEllipseMatrixInverse_modelMatrix:	{ type: "Matrix4fv", value: [] },
 			downsamplingWidth: { type: "f", value: 100. },	
+			downsamplingWidth_start: { type: "f", value: 0. },
 			downsamplingPolygon: { type: "3fv", value: [] },	
 
 		};
@@ -799,6 +800,21 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			});
 		}
 	}
+	
+	get downsamplingWidth_start () {
+		return this.uniforms.downsamplingWidth_start.value;
+	}
+
+	set downsamplingWidth_start (value) {
+		if (this.uniforms.downsamplingWidth_start.value !== value) {
+			this.uniforms.downsamplingWidth_start.value = value;
+			this.dispatchEvent({
+				type: 'material_property_changed',
+				target: this
+			});
+		}
+	}
+	
 	
 	get downsamplingEllipseMatrix () {
 		return this.uniforms.downsamplingEllipseMatrix.value;

@@ -1250,6 +1250,7 @@ export class Renderer {
 			shader.setUniformMatrix4("downsamplingEllipseMatrix", material.uniforms.downsamplingEllipseMatrix.value);
 			shader.setUniformMatrix4("downsamplingEllipseMatrixInverse", material.uniforms.downsamplingEllipseMatrixInverse.value);
 			shader.setUniform1f("downsamplingWidth", material.uniforms.downsamplingWidth.value);
+			shader.setUniform1f("downsamplingWidth_start", material.uniforms.downsamplingWidth_start.value);
 			
 			/*if (material.downsamplingPolygon && material.downsamplingPolygon.length > 0) {
 				{

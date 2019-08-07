@@ -37,6 +37,7 @@ uniform float uOrthoHeight;
 // downsampling density based on parameters
 #if defined(num_downsamplingPolygonVerts)
 uniform float downsamplingWidth;
+uniform float downsamplingWidth_start;
 uniform mat4 modelMatrixInverse;
 #endif
 // if num_downsamplingPolygonVerts == -1: no downsampling, if == 0: sphere if > 0: polygon
@@ -494,16 +495,15 @@ vec3 getCompositeColor(){
 }
 
 
+#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > -1
+
 float rand_f(vec3 pos){ 
 	return fract(sin(pos.z * dot(pos.xy, vec2(12.9898,78.233))) * 43758.5453); 
 } 
 
-
+#if num_downsamplingPolygonVerts == 0
 float getDistance_Ellipsoid(){ 
-
-#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts == 0
 	// viewer.scene.pointclouds[0].material.downsamplingEllipseMatrix = viewer.scene.volumes[0].matrixWorld.clone()
-
     vec4 pos_world = modelMatrix * vec4( position, 1.0 );
 	float pointDist_local = length((downsamplingEllipseMatrixInverse * pos_world).xyz); // faster approximate, but then hard to scale correctly if sx sy sz different
 	vec3 closest_point_unit_sphere = 1. * normalize((downsamplingEllipseMatrixInverse * pos_world).xyz);
@@ -517,9 +517,6 @@ float getDistance_Ellipsoid(){
 	//float dist_normalized = (pointDist - min_dist) / (max_dist - min_dist); // dist between 0 and 1 
 	// float dist_normalized = (pointDist - 1.) / downsamplingWidth; // dist between 0 and 1 
 	float dist = pointDist_local <= 1. ? 0. : pointDist; // dist between 0 and 1 
-#else
-	float dist = 0.;
-#endif
 	return dist; 
 } 
 
@@ -540,10 +537,10 @@ int ptInPoly(int nvert, vec3 verts[100], vec3 pt)
 }
 */
 
+#elif num_downsamplingPolygonVerts > 0
 float getDistance_Polygon(){ 
 	vec4 pos_world = modelMatrix * vec4( position, 1.0 );
 	float dist = -1.; 
-#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > 0
 	for (int i = 0; i < 0+1 * (num_downsamplingPolygonVerts + 1); i++) {
 		vec4 e0_ = modelMatrixInverse * vec4(downsamplingPolygonVerts[i], 1);
 		vec4 e1_ = modelMatrixInverse * vec4(downsamplingPolygonVerts[i + 1 < num_downsamplingPolygonVerts ? i + 1 : 0], 1);
@@ -599,40 +596,43 @@ float getDistance_Polygon(){
 	if (ptInPoly) {
 		dist = 0.;
 	} 
-#endif
 
 	return dist; 
 } 
-
+#endif
 
 float getNormalizedDistance(){ 
-	float dist; 
-#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts >= 0
-	if (num_downsamplingPolygonVerts > 0) {
-		dist = getDistance_Polygon();
-	} else {
+	float dist = 0.; 
+	#if num_downsamplingPolygonVerts == 0
 		dist = getDistance_Ellipsoid(); 
-	}
+	#elif num_downsamplingPolygonVerts > 0
+		dist = getDistance_Polygon();
+	#endif
 	float dist_normalized = dist / downsamplingWidth;
 	// TRUNCATED LINEAR, non soft changes in density
 	// dist_normalized = min(max(dist_normalized, 0.), 1.); //truncated linear
-	// SIGMOID, smoother
-	dist_normalized = 1. / (1. + exp (- 1. * (dist - 0.*downsamplingWidth) / downsamplingWidth ));
-	// OTHER EXAMPLE SHADER FUNCTIONS : http://www.flong.com/texts/code/shapers_exp/
+	// SIMPLE SIGMOID, smoother than linear, controlled by a single parameter
+	// dist_normalized = 1. / (1. + exp (- 1. * (dist - 0.*downsamplingWidth) / downsamplingWidth ));
+	// dist_normalized = (dist_normalized - 0.5) * 2.;
+	// SIGMOID with double parameters, x0 and width, to select start and dropoff value
+	float x0 = - downsamplingWidth_start; // 73% at D, 88% at 2D, 95% at 3D, 99% at 5D, can replaec by eg -5. * downsamplingWidth; 
+	float y0 =  1. / (1. + exp (- x0 / downsamplingWidth ));
+	dist_normalized =  1. / (1. - y0) * (1. / (1. + exp (- (dist + x0)  / downsamplingWidth )) - y0);
+
+	if (dist == 0.) {dist_normalized = 0.;}
+
 	// Display 1 point out of 1000 on the outer boundary, might need to be removed
-	dist_normalized -= 0.001;
-#else
-	float dist_normalized = 0.;
-#endif
+	//dist_normalized -= 0.001;
 	return dist_normalized;
 }
-
-
 float getDownsamplingVisibility(){ 
     float dist_normalized = getNormalizedDistance();// * 0.8 + 0.1*sin(uTime * 2.); 
     float rand_n = rand_f(position.xyz);  
-    return ((min(max(1. * (dist_normalized - 0.5), -0.5), 0.5) + 0.5) > rand_n ? 0. : 1.);  
+    return (dist_normalized > rand_n ? 0. : 1.);  
 } 
+#endif
+
+
   
 
 
@@ -656,10 +656,6 @@ vec3 getColor(){
 		color = getRGB();
 	#elif defined color_type_height
 		color = getElevation();
-		float w = (getNormalizedDistance() - elevationRange.x) / (elevationRange.y - elevationRange.x);
-		color = texture2D(gradient, vec2(w,1.0-w)).rgb;
-
-		color = getNormalizedDistance() * vec3(1., 1., 1.);
 	#elif defined color_type_rgb_height
 		vec3 cHeight = getElevation();
 		color = (1.0 - uTransition) * getRGB() + uTransition * cHeight;
@@ -699,7 +695,7 @@ vec3 getColor(){
 		color = getCompositeColor();
 	#endif
 	
-    //if(false && (0.5 > snoise(vec4(position, 10.) / 100000000.)) ){ 
+#if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > -1
 #ifdef color_type_rgb // debug mode : in color mode, apply density, else in elevation mode, apply density to color
     if(true && getNormalizedDistance() > rand_f(position.xyz)) { 
         gl_Position = vec4(100.0, 100.0, 100.0, 0.0); 
@@ -707,11 +703,12 @@ vec3 getColor(){
         color.g = 0.0; 
         color.b = 0.0; 
     }
+#elif defined color_type_height
+		color = getNormalizedDistance() * vec3(1., 1., 1.);
+		//float w = (getNormalizedDistance() - elevationRange.x) / (elevationRange.y - elevationRange.x);
+		//color = texture2D(gradient, vec2(w,1.0-w)).rgb;
 #endif
-	//color = vec3(downsamplingEllipseMatrix[0][0], downsamplingEllipseMatrix[0][1], downsamplingEllipseMatrix[0][2]); 
-	
-	//color = snoise(vec4(position, 10.)) * vec3(1.,1.,1.);
-	
+#endif
 	/*
 	vec3 position_bis = vec3(position.x, position.y, position.z); // position;
 	//position_bis = position + 0.8 * getNormalizedDistance() * sin(uTime / 1.0) * normalize( normal ); 

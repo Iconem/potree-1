@@ -49,21 +49,17 @@
 		<div id="sldDownsamplingWidth" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
 			<span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
 	</div>
-	<div style="position: absolute; right: 10px; top: 225px; z-index: 100; ">
+	<div style="position: absolute; right: 10px; top: 225px; z-index: 100; color: white; font-size: 14px; width: 200px;">
+		<span>Downsampling Start Width:</span> <span id="lblDownsamplingWidth0">X</span> 
+		<div id="sldDownsamplingWidth0" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+			<span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
+	</div>
+	<div style="position: absolute; right: 10px; top: 275px; z-index: 100; ">
 		<button style="padding: 10px;" onclick="switchDebugShaderState()">SWITCH DEBUG SHADER STATE</div>
 	</div>
 		
 		
 	<script>
-
-		var debugShaderState = true;
-		function switchDebugShaderState() {
-			debugShaderState = !debugShaderState;
-			for (let ptc of viewer.scene.pointclouds) {
-				ptc.material.pointColorType = debugShaderState ? Potree.PointColorType.RGB : Potree.PointColorType.HEIGHT;
-			}
-		}
-
 
 		var datasetIdx = 2;
 		$('#sldDownsamplingWidth').slider({
@@ -76,6 +72,20 @@
 				$('#lblDownsamplingWidth')[0].innerHTML = width.toFixed(2);
 				for (let p of viewer.scene.pointclouds) {
 					p.material.downsamplingWidth = width;
+                }
+			}
+		});
+		var datasetIdx = 2;
+		$('#sldDownsamplingWidth0').slider({
+			value: 0,
+			min: -2,
+			max: 3,
+			step: 0.01,
+			slide: (event, ui) => { 
+				width = Math.pow(10, ui.value);
+				$('#lblDownsamplingWidth0')[0].innerHTML = width.toFixed(2);
+				for (let p of viewer.scene.pointclouds) {
+					p.material.downsamplingWidth_0 = width;
                 }
 			}
 		});
@@ -128,8 +138,8 @@
                     viewer.scene.addPointCloud(pointcloud);
 					// Set pointcloud material
 					
-					material.pointColorType = Potree.PointColorType.HEIGHT;
 					material.pointColorType = Potree.PointColorType.RGB;
+					material.pointColorType = Potree.PointColorType.HEIGHT;
 					material.elevationRange = [-1, 2];
 					
                     material.size = 1;
@@ -222,6 +232,15 @@
 				}
 			}
 		}, 500) ;
+
+		var debugShaderState = true;
+		function switchDebugShaderState() {
+			debugShaderState = !debugShaderState;
+			for (let ptc of viewer.scene.pointclouds) {
+				ptc.material.pointColorType = debugShaderState ? Potree.PointColorType.RGB : Potree.PointColorType.HEIGHT;
+			}
+		}
+		switchDebugShaderState()
 	</script>
 	
 	
