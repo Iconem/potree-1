@@ -51,7 +51,7 @@
 	</div>
 	<div style="position: absolute; right: 10px; top: 225px; z-index: 100; color: white; font-size: 14px; width: 200px;">
 		<span>Downsampling Start Width:</span> <span id="lblDownsamplingWidth0">X</span> 
-		<div id="sldDownsamplingWidth0" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+		<div id="sldDownsamplingWidthStart" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
 			<span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
 	</div>
 	<div style="position: absolute; right: 10px; top: 275px; z-index: 100; ">
@@ -63,7 +63,7 @@
 
 		var datasetIdx = 2;
 		$('#sldDownsamplingWidth').slider({
-			value: 0,
+			value: 2,
 			min: -2,
 			max: 3,
 			step: 0.01,
@@ -76,8 +76,8 @@
 			}
 		});
 		var datasetIdx = 2;
-		$('#sldDownsamplingWidth0').slider({
-			value: 0,
+		$('#sldDownsamplingWidthStart').slider({
+			value: -2,
 			min: -2,
 			max: 3,
 			step: 0.01,
@@ -195,7 +195,7 @@
 					// HEIDENTOR
 					volume.scale.set(133, 133, 133);
 					volume.position.set(589780, 231423., 751);
-					width = 50;
+					width = 100;
 					break;
 				default: 
 					cloud_fps = [

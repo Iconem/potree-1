@@ -625,10 +625,8 @@ float getNormalizedDistance(){
 	//dist_normalized -= 0.001;
 	return dist_normalized;
 }
-float getDownsamplingVisibility(){ 
-    float dist_normalized = getNormalizedDistance();// * 0.8 + 0.1*sin(uTime * 2.); 
-    float rand_n = rand_f(position.xyz);  
-    return (dist_normalized > rand_n ? 0. : 1.);  
+bool getDownsamplingVisibility(){ 
+    return getNormalizedDistance() > rand_f(position.xyz) ;
 } 
 #endif
 
@@ -697,16 +695,13 @@ vec3 getColor(){
 	
 #if defined(num_downsamplingPolygonVerts) && num_downsamplingPolygonVerts > -1
 #ifdef color_type_rgb // debug mode : in color mode, apply density, else in elevation mode, apply density to color
-    if(true && getNormalizedDistance() > rand_f(position.xyz)) { 
+    if(getDownsamplingVisibility()) { 
         gl_Position = vec4(100.0, 100.0, 100.0, 0.0); 
-        color.r = 0.0; 
-        color.g = 0.0; 
-        color.b = 0.0; 
     }
 #elif defined color_type_height
-		color = getNormalizedDistance() * vec3(1., 1., 1.);
-		//float w = (getNormalizedDistance() - elevationRange.x) / (elevationRange.y - elevationRange.x);
-		//color = texture2D(gradient, vec2(w,1.0-w)).rgb;
+	color = getNormalizedDistance() * vec3(1., 1., 1.);
+	//float w = (getNormalizedDistance() - elevationRange.x) / (elevationRange.y - elevationRange.x);
+	//color = texture2D(gradient, vec2(w,1.0-w)).rgb;
 #endif
 #endif
 	/*
