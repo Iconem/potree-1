@@ -817,29 +817,33 @@ vec3 getColor(){
 	//color = texture2D(gradient, vec2(w,1.0-w)).rgb;
 #endif
 #endif
+
+
 	/*
+	// SOME IDEAS ABOUT RANDOMLY MOVING POINTS FOR ANIMATIONS
 	vec3 position_bis = vec3(position.x, position.y, position.z); // position;
 	//position_bis = position + 0.8 * getNormalizedDistance() * sin(uTime / 1.0) * normalize( normal ); 
-	//position_bis.z = position_bis.z + 0.8 * 1. * sin(0.*getNormalizedDistance() - uTime / 1.0); //  getNormalizedDistance()
-	//position_bis.z = position_bis.z + 0.5 * getNormalizedDistance() * sin(getNormalizedDistance() * 20. - uTime / 0.5); //  getNormalizedDistance()
-	vec4 mvPosition = modelViewMatrix * vec4( position_bis, 1.0 ); 
-	gl_Position = projectionMatrix * mvPosition; 
+ 	//position_bis = position + 0.8 * sin(uTime / 1.0) * normalize( normalMatrix * normal ); 
+	//position_bis.z = position_bis.z + 0.8 * 1. * sin(0.*getNormalizedDistance() - uTime / 1.0); 
+	//position_bis.z = position_bis.z + 0.5 * getNormalizedDistance() * sin(getNormalizedDistance() * 20. - uTime / 0.5); 
 	
-    // Add some perlin or simplex noise on top of the density rarefaction : see inigo quilez and thebookofshaders
-    // https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83
-    //color = getNormalizedDistance() * vec3(1.,1.,1.);
     if(true && (getNormalizedDistance() > rand_f(position.xyz)) ){ 
-        vec3 dir = normalize(vec3(rand_f(position.xyz + uTime / 10000000.), rand_f(position.xyz+1.),rand_f(position.xyz+2.))) - .5;
-        vec3 position_bis = position + 10. * dir; // getNormalizedDistance() 
         vec4 pt = vec4(position, uTime / 10.);
         position_bis = position + 2. * sin(uTime / 1.0) * getNormalizedDistance() * vec3(snoise(pt), snoise(pt+1.), snoise(pt+2.)) ;
         //position_bis = position_bis + (1. + pow(mod(uTime, 5.0), 3.)) * (position - vec3(modelMatrixInverse * vec4( downsamplingPoint, 1.0 )));
 
         vec4 mvPosition = modelViewMatrix * vec4( position_bis, 1.0 );
         gl_Position = 1. * projectionMatrix * mvPosition; 
-		
-	
+	// Coordinate shift in camera coordinate system 
+ 	// mvPosition.y = mvPosition.y + 0.8 * sin(uTime / 1.0);
+ 	// mvPosition.z = mvPosition.z + 0.8 * sin(uTime / 1.0); 
     }
+
+ 	#elif defined color_type_depth 
+ 		float linearDepth = -mvPosition.z ; 
+ 		float expDepth = (gl_Position.z / gl_Position.w) * 0.5 + 0.5; 
+ 		vColor = vec3(linearDepth, expDepth, 0.0); 
+
 	*/
     // Black not facing vertices / Backface culling
     /*
