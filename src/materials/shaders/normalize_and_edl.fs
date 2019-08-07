@@ -38,6 +38,31 @@ float response(float depth){
 	return sum / float(NEIGHBOUR_COUNT);
 }
 
+
+
+// Iconem Add normal_from_depth_buffer_texture 
+// TODO : DEPTH BUFFER IS ONLY USED WITHIN EDL AND NORMALIZATION MATERIALS, not a simple pointcloudmaterial. And neither have near and far values to correctly scale normals
+float ztransform(vec2 fragPos){
+	float uNear = 0.001, uFar = 1000.;
+    // Use in EDL shader : uEDLDepth // in HQ normalize_and_edl : uHQDepthMap
+    float z_n = 2.0 * texture2D(uDepthMap, fragPos).r - 1.0; //z_n between -1 and 1
+    return 2. * uFar * uNear / (uFar + uNear - (uFar - uNear) * z_n ); //z_out between uNear and uFar
+}
+vec3 getNormalFromDepth(vec2 fragPos) {
+    vec2 offset1 = vec2(0.0, 1./screenWidth);
+    vec2 offset2 = vec2(1./screenHeight, 0.0);
+
+    float depth = ztransform(fragPos);
+    float depth1 = ztransform(fragPos + offset1);
+    float depth2 = ztransform(fragPos + offset2);
+    vec3 p1 = vec3(offset1, depth1 - depth);
+    vec3 p2 = vec3(offset2, depth2 - depth);
+    vec3 normal = cross(p1, p2);
+    normal.z = -normal.z * depth;
+    normal = normalize(normal);
+    return normal * 0.5 + 0.5;    
+}
+
 void main() {
 
 	float edlDepth = texture2D(uEDLMap, vUv).a;
@@ -54,6 +79,7 @@ void main() {
 	color = color * shade;
 
 	gl_FragColor = vec4(color.xyz, 1.0); 
+	gl_FragColor = vec4(getNormalFromDepth(vUv), 1.);
 
 	gl_FragDepthEXT = depth;
 }
