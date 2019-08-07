@@ -63,7 +63,7 @@
 
 		var datasetIdx = 2;
 		$('#sldDownsamplingWidth').slider({
-			value: 2,
+			value: 1,
 			min: -2,
 			max: 3,
 			step: 0.01,
@@ -156,11 +156,9 @@
 					material.downsamplingPolygon = measure.points; 
 					
                     // [-0.18421298265457153,-2.2564060091972347,3.561807453632351,1.9097316861152667,-1.439433649182318,3.466807454824444,2.1407316923141497,0.5995248556137116,2.757821276783939,1.372745513916017,-0.06246131658553811,4.359779797494409,0.024773180484772173,-1.5844336524605735,4.531779795885083];
-
+					setDebugShaderState(debugShaderState);
 				});	
             });
-
-            
 		}
 			
 		// Create pyramids
@@ -183,6 +181,7 @@
 			measure.name = "Area";
 			measure.closed = true;
 			measure.showArea = false;
+			measure.showDistances = false;
 			measure.lengthUnit = {code: 'm', unitspermeter: '1'};
 			measure.lengthUnitDisplay = {code: 'm', unitspermeter: '1'};
 			console.log('loading dataset number ' + idx);
@@ -195,7 +194,60 @@
 					// HEIDENTOR
 					volume.scale.set(133, 133, 133);
 					volume.position.set(589780, 231423., 751);
-					width = 100;
+					width = 10;
+					/*
+					cloud_fps = [
+						"http://3d.iconem.com/armenia/Geghard_681M/pointclouds/Exterior/cloud.js",
+						"http://3d.iconem.com/armenia/Geghard_681M/pointclouds/Interior/cloud.js"
+					];*/
+					break;
+				case 2: 
+					// CRAC
+					cloud_fps = [
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
+						"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
+					];
+					// volume
+					volume.scale.set(70, 70, 70.);
+					volume.position.set(252411.519, 	3849412.677, 	717.810); 
+					// measure
+					measure.addMarker(new THREE.Vector3(252312.53670597076,3849289.745218277,691.6003189086914));
+					measure.addMarker(new THREE.Vector3(252451.8246626854,3849299.777217865,669.4807281494141));
+					measure.addMarker(new THREE.Vector3(252470.13377046585,3849503.4468689077,666.8055067062378));
+					measure.addMarker(new THREE.Vector3(252385.46141076088,3849544.317322742,689.263959646225));
+					measure.addMarker(new THREE.Vector3(252342.26259231567,3849430.3488788605,735.4059476852417));
+					width = 10;
+					break;
+				case 3: 
+					// MOSUL
+					cloud_fps = [
+						"http://localhost:8080/Irak/Mosul/2018-07/03-Delivrables/Potree/Mosul_3cm_Potree/NOVEMBER/Mosul_3cm_75m_potree/pointclouds/Mosul_3cm_october/cloud.js",
+					];
+					break;
+				case 4: 
+					// BAMIYAN
+					cloud_fps = [
+						"http://localhost:8080/pointclouds/bamiyan_cliff/cloud.js",
+					];
+					// volume
+					volume.position.set(392348.669, 3854846.918, 10.208); 
+					// measure
+					measure.addMarker(new THREE.Vector3(391784.26355934143,3854505.6129131317,11.891416549682617));
+					measure.addMarker(new THREE.Vector3(392441.18989372253,3854699.9914016724,7.633417129516602));
+					measure.addMarker(new THREE.Vector3(393101.4833602905,3854829.5712738037,0.046417236328125));
+					measure.addMarker(new THREE.Vector3(392951.89961242676,3855152.947248459,41.42341613769531));
+					measure.addMarker(new THREE.Vector3(392264.36640548706,3855120.998374939, 112.83216094970703));
+					measure.addMarker(new THREE.Vector3(391689.9568157196,3854853.233016968,90.04416072368622));
+					width = 200;
 					break;
 				default: 
 					cloud_fps = [
@@ -233,14 +285,16 @@
 			}
 		}, 500) ;
 
-		var debugShaderState = true;
-		function switchDebugShaderState() {
-			debugShaderState = !debugShaderState;
+		var debugShaderState = false;
+		function setDebugShaderState(debugShaderState) {
 			for (let ptc of viewer.scene.pointclouds) {
-				ptc.material.pointColorType = debugShaderState ? Potree.PointColorType.RGB : Potree.PointColorType.HEIGHT;
+				ptc.material.pointColorType = debugShaderState ? Potree.PointColorType.HEIGHT : Potree.PointColorType.RGB;
 			}
 		}
-		switchDebugShaderState()
+		function switchDebugShaderState() {
+			debugShaderState = !debugShaderState;
+			setDebugShaderState(debugShaderState);
+		}
 	</script>
 	
 	

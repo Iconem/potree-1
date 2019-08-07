@@ -137,7 +137,7 @@ export class PointCloudMaterial extends THREE.RawShaderMaterial {
 			downsamplingEllipseMatrix:	{ type: "Matrix4fv", value: [] },
 			downsamplingEllipseMatrixInverse:	{ type: "Matrix4fv", value: [] },
 			downsamplingEllipseMatrixInverse_modelMatrix:	{ type: "Matrix4fv", value: [] },
-			downsamplingWidth: { type: "f", value: 100. },	
+			downsamplingWidth: { type: "f", value: 10. },	
 			downsamplingWidth_start: { type: "f", value: 0. },
 			downsamplingPolygon: { type: "3fv", value: [] },	
 
