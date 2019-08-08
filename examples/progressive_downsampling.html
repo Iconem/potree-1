@@ -85,7 +85,7 @@
 				width = Math.pow(10, ui.value);
 				$('#lblDownsamplingWidth0')[0].innerHTML = width.toFixed(2);
 				for (let p of viewer.scene.pointclouds) {
-					p.material.downsamplingWidth_0 = width;
+					p.material.downsamplingWidth_start = width;
                 }
 			}
 		});
