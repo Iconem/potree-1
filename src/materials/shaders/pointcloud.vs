@@ -107,6 +107,9 @@ uniform sampler2D classificationLUT;
 
 uniform sampler2D projectiveTextureUniform;
 uniform mat4 MVP_projective;
+//used for depth test to know if texturing by projective camera is needed or not
+// Look how uShadowMap and other uniforms and test is done ! 
+uniform sampler2D uProjectiveDepth;
 
 #if defined(num_shadowmaps) && num_shadowmaps > 0
 uniform sampler2D uShadowMap[num_shadowmaps];
@@ -405,11 +408,45 @@ vec3 getProjectiveTexture(){
 
 	// Get rgb from texture
 	vec3 rgb = texture2D(projectiveTextureUniform, uv_Position).rgb;
+
+	// Clamp to camera frustum
 	if ((uvw_Position.w < 0.) || (uv_Position.x < 0.) || (uv_Position.y < 0.) || (uv_Position.x > 1.) || (uv_Position.y > 1.)) {
 		rgb = vec3(1., 1., 1.);
+		//gl_Position = vec4(100.0, 100.0, 100.0, 0.0);
 		//rgb = color;
 	}
+	
+	// Use first shadowmap as depth from projective camera, in order to avoid texturing points hidden
+#if defined(num_shadowmaps) && num_shadowmaps > 0
+	float bias = vRadius * 2.0;
+	int i = 0;
+	vec3 viewPos = (uShadowWorldView[i] * vec4(position, 1.0)).xyz;
+	float distanceToLight = abs(viewPos.z);
+
+	vec4 projPos = uShadowProj[i] * uShadowWorldView[i] * vec4(position, 1);
+	vec3 nc = projPos.xyz / projPos.w;
+	float u = nc.x * 0.5 + 0.5;
+	float v = nc.y * 0.5 + 0.5;
+	
+	vec4 depthMapValue = texture2D(uShadowMap[i], vec2(u, v));
+
+	float linearDepthFromSM = depthMapValue.x + bias;
+	float linearDepthFromViewer = distanceToLight;
+
+	if(linearDepthFromSM > linearDepthFromViewer){
+		// visible, do nothing
+	} else {
+		if (!((uvw_Position.w < 0.) || (uv_Position.x < 0.) || (uv_Position.y < 0.) || (uv_Position.x > 1.) || (uv_Position.y > 1.))) {
+			rgb = vec3(0.9, 0.9, 0.9);
+			//gl_Position = vec4(100.0, 100.0, 100.0, 0.0);
+		}
+	}
+
+#endif
+
+
 	return rgb; 
+
 }
 
 float getIntensity(){
@@ -788,7 +825,7 @@ void main() {
 		}
 	#endif
 
-	#if defined(num_shadowmaps) && num_shadowmaps > 0
+	#if defined(num_shadowmaps) && num_shadowmaps > 0 && 1 == -1
 
 		const float sm_near = 0.1;
 		const float sm_far = 10000.0;
