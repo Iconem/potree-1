@@ -679,6 +679,46 @@ export class Renderer {
 		}
 		let projectiveWorldView = new THREE.Matrix4();
 		let MVP_projective = new THREE.Matrix4();
+		/*
+		
+		if (shadowMaps.length > 0) {
+
+			const lShadowMap = shader.uniformLocations["uShadowMap[0]"];
+
+			shader.setUniform3f("uShadowColor", material.uniforms.uShadowColor.value);
+
+			let bindingStart = 5;
+			let bindingPoints = new Array(shadowMaps.length).fill(bindingStart).map((a, i) => (a + i));
+			gl.uniform1iv(lShadowMap, bindingPoints);
+
+			for (let i = 0; i < shadowMaps.length; i++) {
+				let shadowMap = shadowMaps[i];
+				let bindingPoint = bindingPoints[i];
+				let glTexture = this.threeRenderer.properties.get(shadowMap.target.texture).__webglTexture;
+
+				gl.activeTexture(gl[`TEXTURE${bindingPoint}`]);
+				gl.bindTexture(gl.TEXTURE_2D, glTexture);
+			}
+
+			{
+
+				let worldViewMatrices = shadowMaps
+					.map(sm => sm.camera.matrixWorldInverse)
+					.map(view => new THREE.Matrix4().multiplyMatrices(view, world))
+
+				let flattenedMatrices = [].concat(...worldViewMatrices.map(c => c.elements));
+				const lWorldView = shader.uniformLocations["uShadowWorldView[0]"];
+				gl.uniformMatrix4fv(lWorldView, false, flattenedMatrices);
+			}
+
+			{
+				let flattenedMatrices = [].concat(...shadowMaps.map(sm => sm.camera.projectionMatrix.elements));
+				const lProj = shader.uniformLocations["uShadowProj[0]"];
+				gl.uniformMatrix4fv(lProj, false, flattenedMatrices);
+			}
+		}
+
+		*/
 
 		let gpsMin = Infinity;
 		let gpsMax = -Infinity
