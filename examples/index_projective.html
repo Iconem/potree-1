@@ -47,37 +47,18 @@
 	<script>
 		projectiveIdx = 0;
 		cloud_fps = [
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
-			"file://///dalia/jobs/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
 		];
-		cloud_fps = [
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
-			"http://localhost:8080/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
-		];
-
-		//cam_bundler_data = cracdeschevaliers_cam_bundler_data;
-		//cam_bundler_list = cracdeschevaliers_cam_bundler_list;
-		//n_cams = 1
-		plane_texture_prefix = 'file:///';
-		
 
 		// Cam scale, and Nx Ny needed for correct focal length on ricohs
         var scaleCam = 1;
@@ -118,8 +99,19 @@
 			
 				
 		}
-        
+
+		var light, light_helper;
 		function add_pointclouds_to_scene(cloud_fps) {
+			// LIGHT FOR SHADOWMAPS, REUSE FIRST BEFORE USING OWN PROJECTIVE DEPTH MAP
+			light = new THREE.SpotLight();
+			light.distance = 500;
+			light.angle = (60 / 180) * Math.PI; // can be pretty large, it should at least cover the field of view
+			light.position.set(252390.525, 3849413.350, 715.664);
+			light.lookAt(new THREE.Vector3(252390.026, 3849468.851, 700.235));
+			viewer.scene.scene.add(light);
+			light_helper = new Potree.SpotLightHelper(light, new THREE.Color().setHex(0xff0000));
+			viewer.scene.scene.add(light_helper);
+			
             var first_ptc_loaded = false;
             cloud_fps.forEach(function (cloud_fp) {
                 Potree.loadPointCloud(cloud_fp, cloud_fp, e => {
@@ -133,6 +125,8 @@
                     material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
                     material.shape = Potree.PointShape.CIRCLE;
 					
+					material.uniforms.uShadowColor.value = [0.6, 0.6, 0.6];
+
 					viewer.fitToScreen();
 					
 					/*
