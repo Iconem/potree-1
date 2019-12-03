@@ -413,10 +413,13 @@ vec3 getProjectiveTexture(){
 	if ((uvw_Position.w < 0.) || (uv_Position.x < 0.) || (uv_Position.y < 0.) || (uv_Position.x > 1.) || (uv_Position.y > 1.)) {
 		rgb = vec3(1., 1., 1.);
 		//gl_Position = vec4(100.0, 100.0, 100.0, 0.0);
-		//rgb = color;
+        if (uColor.x < 0.5) {
+            rgb = color;
+        }
 	}
 	
 	// Use first shadowmap as depth from projective camera, in order to avoid texturing points hidden
+    if (uColor.y > 0.5) {
 #if defined(num_shadowmaps) && num_shadowmaps > 0
 	float bias = vRadius * 2.0;
 	int i = 0;
@@ -439,10 +442,14 @@ vec3 getProjectiveTexture(){
 		if (!((uvw_Position.w < 0.) || (uv_Position.x < 0.) || (uv_Position.y < 0.) || (uv_Position.x > 1.) || (uv_Position.y > 1.))) {
 			rgb = vec3(0.9, 0.9, 0.9);
 			//gl_Position = vec4(100.0, 100.0, 100.0, 0.0);
+            if (uColor.x < 0.5) {
+                rgb = color;
+            }
 		}
 	}
 
 #endif
+    }
 
 
 	return rgb; 

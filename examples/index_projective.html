@@ -41,23 +41,39 @@
 	<div style="position: absolute; right: 10px; top: 10px; z-index: 100; font-weight: bold; color: white; font-size: 40px; ">
 		<div style="padding: 10px;" onclick="Potree.PointCloudMaterial.updateProjectiveMaterialsUsingIdx(projectiveIdx++)">⬆</div>
 		<div style=" padding: 10px;" onclick="Potree.PointCloudMaterial.updateProjectiveMaterialsUsingIdx(--projectiveIdx)">⬇</div>
+		<div style="padding: 10px; font-size: 15px;" onclick="update_rgb_visibliity()">RGB</div>
+		<div style=" padding: 10px; font-size: 15px;" onclick="update_depth_visibliity()">DEPTH</div>
 	</div>
 	
 	
 	<script>
+    rgb_vs_edl = true;
+    function update_rgb_visibliity() {
+        for (var i = 0; i < viewer.scene.pointclouds.length; i++) {
+            viewer.scene.pointclouds[i].material.color.r = rgb_vs_edl ? 0 : 1;
+        }
+        rgb_vs_edl = !rgb_vs_edl;
+    }
+    depth_hidden = true;
+    function update_depth_visibliity() {
+        for (var i = 0; i < viewer.scene.pointclouds.length; i++) {
+            viewer.scene.pointclouds[i].material.color.g = depth_hidden ? 0 : 1;
+        }
+        depth_hidden = !depth_hidden;
+    }
 		projectiveIdx = 0;
 		cloud_fps = [
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
-			"http://localhost:8080/Syria/CracDesChevaliers/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_DP/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East1/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_East2/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_HG_filter/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_1North/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_IM_2South/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_K/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_North/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_OHK/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_South/cloud.js",
+			"http://localhost:8080/Syria/CracDesChevaliers/2017-04/03_Deliverables/Potree/Crac_Unesco_final/Iconem_3D_Viewer_files/pointclouds/zone_West/cloud.js",
 		];
 
 		// Cam scale, and Nx Ny needed for correct focal length on ricohs
